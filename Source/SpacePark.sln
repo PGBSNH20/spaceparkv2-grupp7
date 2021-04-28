@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpacePark2", "SpacePark2\SpacePark2.csproj", "{758EF811-9E81-4998-8B93-4D17FBC9E6F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpacePark2", "SpacePark2\SpacePark2.csproj", "{A39D0BB0-EDEF-4BA9-B797-4CC0C22F8053}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{758EF811-9E81-4998-8B93-4D17FBC9E6F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{758EF811-9E81-4998-8B93-4D17FBC9E6F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{758EF811-9E81-4998-8B93-4D17FBC9E6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{758EF811-9E81-4998-8B93-4D17FBC9E6F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A39D0BB0-EDEF-4BA9-B797-4CC0C22F8053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39D0BB0-EDEF-4BA9-B797-4CC0C22F8053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39D0BB0-EDEF-4BA9-B797-4CC0C22F8053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39D0BB0-EDEF-4BA9-B797-4CC0C22F8053}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
