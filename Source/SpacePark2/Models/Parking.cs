@@ -7,6 +7,7 @@ namespace SpacePark2.Models
 {
     public class Parking
     {
+        public int Id { get; set; }
         public ParkingHouse ParkingHouseId { get; set; }
         public SpaceTraveller SpaceTravellerId { get; set; }
         public StarShip StarShipId  { get; set; }
