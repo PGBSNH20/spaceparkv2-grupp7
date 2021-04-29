@@ -21,86 +21,21 @@ namespace SpacePark2.Controllers
             _context = context;
         }
 
-        // GET: api/SpaceTravellers
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<SpaceTraveller>>> GetSpaceTraveller()
+        [HttpGet("id")]
+        public async Task<IActionResult> Get(int? id)
         {
-
-            return await _context.SpaceTraveller.ToListAsync();
-            
-        }
-
-        // GET: api/SpaceTravellers/name
-        [HttpGet("{name}")]
-        public async Task<ActionResult<SpaceTraveller>> GetSpaceTraveller(string name)
-        {
-            var spaceTraveller = await _context.SpaceTraveller.FindAsync(name);
-
-            if (spaceTraveller == null)
-            {
-                return NotFound();
-            }
-
-            return spaceTraveller;
-        }
-
-        // PUT: api/SpaceTravellers/name
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{name}")]
-        public async Task<IActionResult> PutSpaceTraveller(string name, SpaceTraveller spaceTraveller)
-        {
-            if (name != spaceTraveller.Name)
-            {
+            if (id is null)
                 return BadRequest();
-            }
 
-            _context.Entry(spaceTraveller).State = EntityState.Modified;
+            var test = await _context.SpaceTraveller.FindAsync(id);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SpaceTravellerExists(name))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            if (test is null)
+                return BadRequest();
 
-            return NoContent();
+            return Ok(test);
         }
 
-        // POST: api/SpaceTravellers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<SpaceTraveller>> PostSpaceTraveller(SpaceTraveller spaceTraveller)
-        {
-            _context.SpaceTraveller.Add(spaceTraveller);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetSpaceTraveller", new { name = spaceTraveller.Name }, spaceTraveller);
-        }
-
-        //// DELETE: api/SpaceTravellers/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteSpaceTraveller(int id)
-        //{
-        //    var spaceTraveller = await _context.SpaceTraveller.FindAsync(id);
-        //    if (spaceTraveller == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.SpaceTraveller.Remove(spaceTraveller);
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
+       
 
         private bool SpaceTravellerExists(string name)
         {
