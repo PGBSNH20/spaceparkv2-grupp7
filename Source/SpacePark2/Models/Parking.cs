@@ -7,8 +7,6 @@ namespace SpacePark2.Models
 {
     public class Parking
     {
-        
-
         public int Id { get; set; }
         public ParkingHouse ParkingHouse { get; set; }
         public SpaceTraveller SpaceTraveller { get; set; }
