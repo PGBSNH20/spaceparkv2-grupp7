@@ -11,5 +11,6 @@ namespace SpacePark2.Controllers
     [ApiController]
     public class StarShipsController : ControllerBase
     {
+
     }
 }
