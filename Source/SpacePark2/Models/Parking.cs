@@ -7,13 +7,18 @@ namespace SpacePark2.Models
 {
     public class Parking
     {
+        
+
         public int Id { get; set; }
-        public ParkingHouse ParkingHouseId { get; set; }
-        public SpaceTraveller SpaceTravellerId { get; set; }
-        public StarShip StarShipId  { get; set; }
+        public ParkingHouse ParkingHouse { get; set; }
+        public SpaceTraveller SpaceTraveller { get; set; }
+        public StarShip StarShip  { get; set; }
         public DateTime ArrivalTime { get; set; } = DateTime.Now;
         public  DateTime? DepartureTime { get; set; }
         public int Cost { get; set; } = 0;
 
+        public Parking()
+        {
+        }
     }
 }

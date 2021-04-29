@@ -11,5 +11,9 @@ namespace SpacePark2.Models
         public string StarShipModel { get; set; }
         public double ShipLength { get; set; }
 
+        public StarShip()
+        {
+
+        }
     }
 }
