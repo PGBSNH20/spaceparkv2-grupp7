@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SpacePark2.Repositories;
 
 namespace SpacePark2
 {
@@ -32,7 +33,10 @@ namespace SpacePark2
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SpacePark2", Version = "v1" });
             });
-            services.AddDbContext<SpaceParkContext>(x => x.UseSqlServer(Configuration.GetConnectionString("Default"))); 
+            services.AddDbContext<SpaceParkContext>(
+                x => x.UseSqlServer(Configuration.GetConnectionString("Default")));
+
+            services.AddScoped<ISpaceParkRepo, SpaceParkRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
