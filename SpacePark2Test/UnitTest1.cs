@@ -1,14 +1,18 @@
 using System;
 using Xunit;
+using SpacePark2;
+using SpacePark2.Repositories;
 
 namespace SpacePark2Test
 {
     public class UnitTest1
     {
         [Fact]
-        public void Test1()
+        public void GetPerson()
         {
-
+            ISpaceTravellerRepo TestRepository = new SpaceTravellerRepoTest();
+            var result = TestRepository.Get("Sam");
+            Assert.NotNull((result.Id).ToString());
         }
     }
 }
