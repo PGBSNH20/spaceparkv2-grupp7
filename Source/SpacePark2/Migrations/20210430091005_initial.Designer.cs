@@ -10,8 +10,8 @@ using SpacePark2;
 namespace SpacePark2.Migrations
 {
     [DbContext(typeof(SpaceParkContext))]
-    [Migration("20210429081942_inital")]
-    partial class inital
+    [Migration("20210430091005_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,10 +23,9 @@ namespace SpacePark2.Migrations
 
             modelBuilder.Entity("SpacePark2.Models.Parking", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ArrivalTime")
                         .HasColumnType("datetime2");
@@ -37,14 +36,14 @@ namespace SpacePark2.Migrations
                     b.Property<DateTime?>("DepartureTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ParkingHouseId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ParkingHouseId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("SpaceTravellerId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("SpaceTravellerId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("StarShipId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("StarShipId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -59,10 +58,9 @@ namespace SpacePark2.Migrations
 
             modelBuilder.Entity("SpacePark2.Models.ParkingHouse", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -74,10 +72,9 @@ namespace SpacePark2.Migrations
 
             modelBuilder.Entity("SpacePark2.Models.SpaceTraveller", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -89,10 +86,9 @@ namespace SpacePark2.Migrations
 
             modelBuilder.Entity("SpacePark2.Models.StarShip", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("ShipLength")
                         .HasColumnType("float");

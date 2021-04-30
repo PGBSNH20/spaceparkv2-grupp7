@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SpacePark2.Migrations
 {
-    public partial class inital : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,8 +11,7 @@ namespace SpacePark2.Migrations
                 name: "ParkingHouse",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -24,8 +23,7 @@ namespace SpacePark2.Migrations
                 name: "SpaceTraveller",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -37,8 +35,7 @@ namespace SpacePark2.Migrations
                 name: "StarShip",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     StarShipModel = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShipLength = table.Column<double>(type: "float", nullable: false)
                 },
@@ -51,11 +48,10 @@ namespace SpacePark2.Migrations
                 name: "Parking",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ParkingHouseId = table.Column<int>(type: "int", nullable: true),
-                    SpaceTravellerId = table.Column<int>(type: "int", nullable: true),
-                    StarShipId = table.Column<int>(type: "int", nullable: true),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ParkingHouseId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    SpaceTravellerId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    StarShipId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ArrivalTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DepartureTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Cost = table.Column<int>(type: "int", nullable: false)
