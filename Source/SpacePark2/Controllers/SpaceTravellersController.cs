@@ -16,9 +16,9 @@ namespace SpacePark2.Controllers
     public class SpaceTravellersController : ControllerBase
     {
         private readonly SpaceParkContext _context;
-        private readonly ISpaceParkRepo _repo;
+        private readonly ISpaceTravellerRepo _repo;
 
-        public SpaceTravellersController(SpaceParkContext context, ISpaceParkRepo repo)
+        public SpaceTravellersController(SpaceParkContext context, ISpaceTravellerRepo repo)
         {
             _context = context;
             _repo = repo;
@@ -44,7 +44,7 @@ namespace SpacePark2.Controllers
         [HttpGet("{name}")]
         public IActionResult GetHabitants(string name)
         {
-            var h = _repo.GetHabitantByName(name);
+            var h = _repo.GetSpaceTravellerByName(name);
             return Ok(new{Name= h});
         }
        

@@ -36,7 +36,8 @@ namespace SpacePark2
             services.AddDbContext<SpaceParkContext>(
                 x => x.UseSqlServer(Configuration.GetConnectionString("Default")));
 
-            services.AddScoped<ISpaceParkRepo, SpaceParkRepo>();
+            services.AddScoped<ISpaceTravellerRepo, SpaceTravellerRepo>();
+            services.AddScoped<IRepository, Repository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
