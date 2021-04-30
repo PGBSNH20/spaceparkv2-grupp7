@@ -14,14 +14,23 @@ namespace SpacePark2.Repositories
             _context = context;
         }
 
-        public Task<T> Add<T>(T entity) where T : class
+        public async Task<T> Add<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            await _context.Set<T>().AddAsync(entity);
+            await Save();
+            return entity;
         }
 
-        public Task<T> Delete<T>(T entity) where T : class
+        public async Task<T> Delete<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            _context.Remove(entity);
+            await Save();
+            return entity;
+        }
+
+        public async Task<bool> Save()
+        {
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

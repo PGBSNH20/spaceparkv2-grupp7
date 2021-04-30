@@ -16,13 +16,23 @@ namespace SpacePark2.Repositories
         {
             return await _context.SpaceTraveller.FirstOrDefaultAsync(x => x.Id == Id);
         }
-       
-        public async Task<string> GetSpaceTravellerByName(string name)
+
+        public async Task<SpaceTraveller> Get(string name)
         {
-            // dbcontext tjafs
-            await Task.Delay(1);
-            return $"Habitant {name}";
+            return await _context.SpaceTraveller.FirstOrDefaultAsync(x => x.Name == name);
         }
+
+        public async Task Post(SpaceTraveller traveller)
+        {
+            await _context.AddAsync(traveller);
+        }
+
+        //public async Task<string> GetSpaceTravellerByName(string name)
+        //{
+        //    // dbcontext tjafs
+        //    await Task.Delay(1);
+        //    return $"Habitant {name}";
+        //}
 
     }
 }

@@ -38,6 +38,9 @@ namespace SpacePark2
 
             services.AddScoped<ISpaceTravellerRepo, SpaceTravellerRepo>();
             services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IStarShipRepo, StarShipRepo>();
+            services.AddScoped<IParkingRepo, ParkingRepo>();
+            services.AddScoped<IParkingHouseRepo, ParkingHouseRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
