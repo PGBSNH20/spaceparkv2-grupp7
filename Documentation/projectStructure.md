@@ -9,10 +9,10 @@ API
 			- POST (Skapa nytt)
 			- GET (Tillgängliga parkeringshus)
 		- SpaceTraveller
-			- POST (via POST Parking)
+			- (POST (via POST Parking))
 			- GET (får ID och jämför mot parking för att se status och historik)
 		- StarShip
-			- POST (via POST Parking)
+			- (POST (via POST Parking))
 
 		<-- Tidigare tankar -->
 		- Checka ut
