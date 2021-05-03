@@ -1,11 +1,14 @@
-﻿using System;
+﻿using SpacePark2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SpacePark2.Repositories
 {
-    interface IParkingRepo
+    public interface IParkingRepo
     {
+        Task Post(ParkingHouse parkingHouse, SpaceTraveller traveller, StarShip starShip);
+
     }
 }

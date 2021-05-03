@@ -12,19 +12,19 @@ namespace SpacePark2.Repositories
     {
         public SpaceTravellerRepo(SpaceParkContext context): base(context) { }
 
-        public async Task<SpaceTraveller> Get(Guid Id)
-        {
-            return await _context.SpaceTraveller.FirstOrDefaultAsync(x => x.Id == Id);
-        }
+        //public async Task<SpaceTraveller> Get(Guid Id)
+        //{
+        //    return await _context.SpaceTraveller.FirstOrDefaultAsync(x => x.Id == Id);
+        //}
 
         public async Task<SpaceTraveller> Get(string name)
         {
             return await _context.SpaceTraveller.FirstOrDefaultAsync(x => x.Name == name);
         }
 
-        public async Task Post(SpaceTraveller traveller)
+        public Task Update(string name)
         {
-            await _context.AddAsync(traveller);
+            throw new NotImplementedException();
         }
 
         //public async Task<string> GetSpaceTravellerByName(string name)

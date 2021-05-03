@@ -22,13 +22,13 @@ namespace SpacePark2.Controllers
             _repo = repo;
         }
 
-        [HttpPost("{StarShip}")]
-        public async Task<IActionResult> Post(StarShip starShip)
-        {
-            await _repo.Post(starShip);
-            await _repo.Save();
-            return Ok(new { Name = starShip.StarShipModel });
-        }
+        //[HttpPost("{StarShip}")]
+        //public async Task<IActionResult> Post(StarShip starShip)
+        //{
+        //    await _repo.Post(starShip);
+        //    await _repo.Save();
+        //    return Ok(new { Name = starShip.StarShipModel });
+        //}
 
     }
 }

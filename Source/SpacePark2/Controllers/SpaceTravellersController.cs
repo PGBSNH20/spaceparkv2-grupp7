@@ -52,16 +52,16 @@ namespace SpacePark2.Controllers
             return Ok(new{Name= traveller});
         }
 
-        [HttpPost("{SpaceTraveller}")]
-        public async Task<IActionResult> Post(SpaceTraveller traveller)
-        {
-            //finns denna i swappi
-            //ja skicka till databasen
-            // nej skicka felkod
-            await _repo.Post(traveller);
-            await _repo.Save();
-            return Ok(new {traveller.Name });
-        }
+        //[HttpPost("{SpaceTraveller}")]
+        //public async Task<IActionResult> Post(SpaceTraveller traveller)
+        //{
+        //    //finns denna i swappi
+        //    //ja skicka till databasen
+        //    // nej skicka felkod
+        //    await _repo.Post(traveller);
+        //    await _repo.Save();
+        //    return Ok(new {traveller.Name });
+        //}
 
         private bool SpaceTravellerExists(string name)
         {

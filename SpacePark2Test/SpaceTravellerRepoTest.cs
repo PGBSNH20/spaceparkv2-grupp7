@@ -53,5 +53,10 @@ namespace SpacePark2Test
         {
             throw new NotImplementedException();
         }
+
+        public Task Update(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

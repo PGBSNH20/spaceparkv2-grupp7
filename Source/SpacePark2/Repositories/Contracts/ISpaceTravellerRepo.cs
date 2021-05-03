@@ -7,9 +7,8 @@ namespace SpacePark2.Repositories
 {
     public interface ISpaceTravellerRepo : IRepository
     {
-        Task<SpaceTraveller> Get(Guid id);
         Task<SpaceTraveller> Get(string name);
-        Task Post(SpaceTraveller traveller);
+        Task Update(string name);
 
     }
 }
