@@ -72,7 +72,7 @@ namespace Service
             foreach (var starShip in person.StarShips)
             {
                 var search = await GetStarWarsObject<Starship>(starShip);
-                starShips.Add(search.Name);
+                starShips.Add(search.Name.ToLower());
             }
 
             return starShips;

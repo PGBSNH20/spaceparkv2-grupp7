@@ -19,5 +19,13 @@ namespace SpacePark2.Repositories
              */
             throw new NotImplementedException();
         }
+
+        public async Task AddParking(Parking parking)
+        {
+            _context.Add(parking);
+            await Save();
+        }
+
+
     }
 }
