@@ -23,14 +23,21 @@ namespace SpacePark2.Controllers
             _parkingRepo = parkingRepo;
         }
 
+        /// <summary>
+        /// Creates a parkingspace.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="parkingHouse"></param>
+        /// <param name="shipModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Post(string name, string parkingHouse, string shipModel)
         {
             var swapi = new SwApi();
 
             var traveller = await swapi.GetSpaceTraveller(name);
-            if (traveller is null)
-                return BadRequest("You are not famus");
+            if (traveller == null)
+                return BadRequest("You have entered an invalid input");
 
             // kolla om personen finns, returnera guid/ namn
             var existingTraveller = await _travellerRepo.Get(name);

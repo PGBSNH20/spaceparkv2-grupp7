@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SpacePark2.Repositories;
+using System.Reflection;
+using System.IO;
 
 namespace SpacePark2
 {
@@ -29,10 +31,17 @@ namespace SpacePark2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SpacePark2", Version = "v1" });
+           
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            c.IncludeXmlComments(xmlPath);
             });
+
+
             services.AddDbContext<SpaceParkContext>(
                 x => x.UseSqlServer(Configuration.GetConnectionString("Default")));
 

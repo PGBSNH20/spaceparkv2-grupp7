@@ -52,13 +52,18 @@ namespace Service
 
         public async Task<SpaceTraveller> GetSpaceTraveller(string name)
         {
+            SearchResultTraveller search = null;
             NamePath = $"https://swapi.dev/api/people/?search={name}";
-            var search = await GetStarWarsObject<SearchResultTraveller>(NamePath);
 
-            if (search.results[0].Name.ToLower() == name.ToLower())
-                return search.results[0];
+
+            if(name != null)
+            search = await GetStarWarsObject<SearchResultTraveller>(NamePath);
+
+            if(search !=null && search.results[0].Name.ToLower() == name.ToLower())
+               return search.results[0];
 
             return null;
+           
         }
 
         public async Task<List<string>> ChooseStarShip(SpaceTraveller person)

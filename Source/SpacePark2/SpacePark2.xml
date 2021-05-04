@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SpacePark2</name>
+    </assembly>
+    <members>
+        <member name="M:SpacePark2.Controllers.ParkingController.Post(System.String,System.String,System.String)">
+            <summary>
+            Creates a parkingspace.
+            </summary>
+            <param name="name"></param>
+            <param name="parkingHouse"></param>
+            <param name="shipModel"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
