@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Service;
 using SpacePark2.Models;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,12 @@ namespace SpacePark2.Repositories
     public class ParkingRepository : Repository, IParkingRepository
     {
         public ParkingRepository(SpaceParkContext context) : base(context) { }
-
-
+      
         public async Task AddParking(Parking parking)
         {
             await Add(parking);
         }
-        public async Task<Parking> EndParking(SpaceTraveller traveller)
+        public async Task<Parking> EndParking(Models.SpaceTraveller traveller)
         {
             var onGoingParking = await _context.Parking.Include(s => s.SpaceTraveller)
                 .Where(s => s.SpaceTraveller == traveller)
@@ -30,7 +30,7 @@ namespace SpacePark2.Repositories
             }
             return null;
         }
-        public async Task<List<Parking>> History(SpaceTraveller traveller)
+        public async Task<List<Parking>> History(Models.SpaceTraveller traveller)
         {
             return await _context.Parking
                   .Include(x => x.SpaceTraveller)
@@ -44,11 +44,9 @@ namespace SpacePark2.Repositories
             DateTime end = DateTime.Now;
             return (end - start).TotalMinutes;
         }
-
         public int CostOfParking(double timeParked)
         {
             return (int)(Math.Round(timeParked, 0) * 250);
         }
-
     }
 }

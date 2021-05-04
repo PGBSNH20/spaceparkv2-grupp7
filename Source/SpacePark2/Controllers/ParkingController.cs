@@ -17,6 +17,7 @@ namespace SpacePark2.Controllers
         private readonly ISpaceTravellerRepository _travellerRepository;
         private readonly IParkingRepository _parkingRepository;
         
+        
 
         public ParkingController(ISpaceTravellerRepository travellerRepository, IParkingRepository parkingRepository)
         {
@@ -41,17 +42,18 @@ namespace SpacePark2.Controllers
                 return BadRequest("You have entered an invalid input");
 
             //TODO metod som validerar parkinghouse och nekar om de ej finns
+            // kollar om det
 
             var starShips = await swapi.ChooseStarShip(traveller);
             if (!starShips.Contains(shipModel.ToLower()))
                 return BadRequest("You don't own this Starship");
 
             var shipLengt = await swapi.GetShipLength(shipModel);
-
+             
             var parking = new Parking
             {
                 SpaceTraveller = _travellerRepository.CreateSpaceTraveller(await _travellerRepository.Get(name), traveller),
-                ParkingHouse = new ParkingHouse { Name = parkingHouse },
+                ParkingHouse = new ParkingHouse { Name = ""},
                 StarShip = new StarShip { ShipLength = shipLengt, StarShipModel = shipModel },
 
             };

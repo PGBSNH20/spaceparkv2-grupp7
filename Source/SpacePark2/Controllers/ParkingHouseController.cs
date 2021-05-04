@@ -25,5 +25,10 @@ namespace SpacePark2.Controllers
             return Ok();
 
         }
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            return Ok(await _parkingHouseRepository.Get());
+        }
     }
 }
