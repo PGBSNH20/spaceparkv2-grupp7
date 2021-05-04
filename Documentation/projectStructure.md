@@ -2,15 +2,15 @@
 API
 	- Vilka services ska vi ha?
 		- Parking
-			- POST (Starta ny parkering)
-			- UPDATE (Departure, Cost)
-			- GET (Aktuell status, Historik)
+			- [x] POST (Starta ny parkering)
+			- [x] UPDATE (Departure, Cost)
+			- [] GET (Aktuell status, Historik)
 		- ParkingHouse
-			- POST (Skapa nytt)
-			- GET (Tillgängliga parkeringshus)
+			- [X] POST (Skapa nytt)
+			- [] GET (Tillgängliga parkeringshus)
 		- SpaceTraveller
 			- (POST (via POST Parking))
-			- GET (får ID och jämför mot parking för att se status och historik)
+			- [] GET (får ID och jämför mot parking för att se status och historik)
 		- StarShip
 			- (POST (via POST Parking))
 
