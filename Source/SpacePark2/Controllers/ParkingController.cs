@@ -51,7 +51,7 @@ namespace SpacePark2.Controllers
             var parking = new Parking
             {
                 SpaceTraveller = _travellerRepository.CreateSpaceTraveller(await _travellerRepository.Get(name), traveller),
-                ParkingHouse = new ParkingHouse { Name = "" },
+                ParkingHouse = new ParkingHouse { Name = parkingHouse },
                 StarShip = new StarShip { ShipLength = shipLengt, StarShipModel = shipModel },
 
             };

@@ -23,23 +23,20 @@ namespace SpacePark2.Repositories
                 .FirstOrDefaultAsync(x => x.DepartureTime == null);
             if (onGoingParking != null)
             {
-                int cost = CostOfParking(TimeParked(onGoingParking));
-                await Update(new[] { (onGoingParking.DepartureTime = DateTime.Now, onGoingParking.Cost = cost) });
+                onGoingParking.DepartureTime = DateTime.Now;
+                onGoingParking.Cost = CostOfParking(TimeParked(onGoingParking));
+                await Update(onGoingParking);
                 return onGoingParking;
             }
             return null;
         }
         public async Task<List<Parking>> History(SpaceTraveller traveller)
         {
-            await Task.Delay(1);
             return await _context.Parking
                   .Include(x => x.SpaceTraveller)
-                  .ThenInclude(xs => xs.Name).ToListAsync();
-            //.Include(s => s.StarShip) (t as Derived).MyProperty
-            //  .ThenInclude(p => p.StarShipModel))
-            //.Include(p => p.ParkingHouse)
-            //.ThenInclude(p => p.Name)
-            //.Where(s => s.SpaceTraveller == traveller && s.DepartureTime != null).ToListAsync();
+                  .Include(x => x.StarShip)
+                  .Include(x=> x.ParkingHouse)
+                  .Where(p => p.SpaceTraveller == traveller).ToListAsync();
         }
         public double TimeParked(Parking vehicle)
         {

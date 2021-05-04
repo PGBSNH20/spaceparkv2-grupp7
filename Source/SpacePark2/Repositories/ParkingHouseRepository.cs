@@ -8,6 +8,10 @@ namespace SpacePark2.Repositories
     public class ParkingHouseRepository :Repository,IParkingHouseRepository
     {
         public ParkingHouseRepository(SpaceParkContext context) : base(context) { }
-        
+
+        public async Task Post(string name)
+        {
+            await Add(name);
+        }
     }
 }

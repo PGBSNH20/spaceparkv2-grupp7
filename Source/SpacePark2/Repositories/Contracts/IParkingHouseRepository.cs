@@ -7,5 +7,6 @@ namespace SpacePark2.Repositories
 {
     public interface IParkingHouseRepository
     {
+        Task Post(string name);
     }
 }
