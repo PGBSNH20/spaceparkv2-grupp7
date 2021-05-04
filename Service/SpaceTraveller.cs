@@ -11,6 +11,8 @@ namespace Service
 {
     public class SpaceTraveller
     {
+        // TODO Ta bort de vi inte använder säger Peter
+
         [JsonProperty("name")]
         public string Name { get; set; }
         public string height { get; set; }

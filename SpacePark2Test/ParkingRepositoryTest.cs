@@ -10,12 +10,17 @@ namespace SpacePark2Test
 {
     class ParkingRepositoryTest : IParkingRepository
     {
-        public Task AddNewParking(ParkingHouse parkingHouse, SpaceTraveller traveller, StarShip starShip)
+        public Task AddParking(Parking parking)
         {
             throw new NotImplementedException();
         }
 
-        public Task AddParking(Parking parking)
+        public Task<Parking> EndParking(SpaceTraveller traveller)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Parking>> History(SpaceTraveller traveller)
         {
             throw new NotImplementedException();
         }

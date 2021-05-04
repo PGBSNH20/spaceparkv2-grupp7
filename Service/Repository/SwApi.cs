@@ -1,17 +1,14 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Service.Repository.Contracts;
 
-
-
-namespace Service
+namespace Service.Repository
 {
-    public class SwApi : IDisposable
+    public class SwApi : IDisposable, ISwApi
     {
         public string Name { get; set; }
         private string NamePath { get; set; }

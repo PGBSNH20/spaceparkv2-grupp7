@@ -28,11 +28,6 @@ namespace SpacePark2Test
             };
         }
 
-        public Task<Parking> EndParking(SpaceTraveller traveller)
-        {
-            throw new NotImplementedException();
-        }
-
         public SpaceTraveller CreateSpaceTraveller(SpaceTraveller existingTraveller, Service.SpaceTraveller newTraveller)
         {
             // använd SpaceTraveller i SpacePark2
@@ -50,11 +45,6 @@ namespace SpacePark2Test
         }
 
         public Task Update<T>(T entity) where T : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Update<T>(T[] entity) where T : class
         {
             throw new NotImplementedException();
         }

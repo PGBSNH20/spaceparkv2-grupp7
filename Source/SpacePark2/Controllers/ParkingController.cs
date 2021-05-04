@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Service.Repository.Contracts;
 
 namespace SpacePark2.Controllers
 {
@@ -16,56 +17,50 @@ namespace SpacePark2.Controllers
     {
         private readonly ISpaceTravellerRepository _travellerRepository;
         private readonly IParkingRepository _parkingRepository;
-        
-        
+        private readonly ISwApi _swApi;
 
-        public ParkingController(ISpaceTravellerRepository travellerRepository, IParkingRepository parkingRepository)
+
+        public ParkingController(ISpaceTravellerRepository travellerRepository, IParkingRepository parkingRepository, ISwApi swApi)
         {
             _travellerRepository = travellerRepository;
             _parkingRepository = parkingRepository;
+            _swApi = swApi;
         }
 
         /// <summary>
         /// Creates a parkingspace.
         /// </summary>
-        /// <param name = "name">Space Traveller</param>
+        /// <param name = "travellerName">Space Traveller</param>
         /// <param name="parkingHouse">Parking House</param>
         /// <param name="shipModel">Starship Model</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Post(string name, string parkingHouse, string shipModel)
+        public async Task<IActionResult> Post(string travellerName, string parkingHouse, string shipModel)
         {
-            var swapi = new SwApi();
-
-            var traveller = await swapi.GetSpaceTraveller(name);
+            var traveller = await _swApi.GetSpaceTraveller(travellerName);
             if (traveller == null)
                 return BadRequest("You have entered an invalid input");
 
             //TODO metod som validerar parkinghouse och nekar om de ej finns
             // kollar om det
 
-            var starShips = await swapi.ChooseStarShip(traveller);
+            var starShips = await _swApi.ChooseStarShip(traveller);
             if (!starShips.Contains(shipModel.ToLower()))
                 return BadRequest("You don't own this Starship");
 
-            var shipLengt = await swapi.GetShipLength(shipModel);
+            var shipLength = await _swApi.GetShipLength(shipModel);
              
             var parking = new Parking
             {
-                SpaceTraveller = _travellerRepository.CreateSpaceTraveller(await _travellerRepository.Get(name), traveller),
+                SpaceTraveller = _travellerRepository.CreateSpaceTraveller(await _travellerRepository.Get(travellerName), traveller),
                 ParkingHouse = new ParkingHouse { Name = ""},
-                StarShip = new StarShip { ShipLength = shipLengt, StarShipModel = shipModel },
-
+                StarShip = new StarShip { ShipLength = shipLength, StarShipModel = shipModel },
             };
 
             await _parkingRepository.AddParking(parking);
             return Ok();
         }
-
-       
-
     }
-
 }
 
 
