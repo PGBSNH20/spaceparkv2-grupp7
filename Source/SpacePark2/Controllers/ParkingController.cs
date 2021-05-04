@@ -16,6 +16,7 @@ namespace SpacePark2.Controllers
     {
         private readonly ISpaceTravellerRepo _travellerRepo;
         private readonly IParkingRepo _parkingRepo;
+        
 
         public ParkingController(ISpaceTravellerRepo travellerRepo, IParkingRepo parkingRepo)
         {
@@ -26,9 +27,9 @@ namespace SpacePark2.Controllers
         /// <summary>
         /// Creates a parkingspace.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="parkingHouse"></param>
-        /// <param name="shipModel"></param>
+        /// <param name = "name">Space Traveller</param>
+        /// <param name="parkingHouse">Parking House</param>
+        /// <param name="shipModel">Starship Model</param>
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Post(string name, string parkingHouse, string shipModel)
@@ -39,43 +40,30 @@ namespace SpacePark2.Controllers
             if (traveller == null)
                 return BadRequest("You have entered an invalid input");
 
-            // kolla om personen finns, returnera guid/ namn
-            var existingTraveller = await _travellerRepo.Get(name);
+            // metod som validerar parkinghouse
 
-            var newTraveller = new Models.SpaceTraveller { Name = traveller.Name };
-
-            var ship = await swapi.ChooseStarShip(traveller);
-            if (!ship.Contains(shipModel.ToLower()))
+            var starShips = await swapi.ChooseStarShip(traveller);
+            if (!starShips.Contains(shipModel.ToLower()))
                 return BadRequest("You don't own this Starship");
 
             var shipLengt = await swapi.GetShipLength(shipModel);
 
-            Parking parking;
-            if (existingTraveller != null)
+            var parking = new Parking
             {
-                parking = new Parking
-                {
-                    SpaceTraveller = existingTraveller,
-                    ParkingHouse = new ParkingHouse { Name = "" },
-                    StarShip = new StarShip { ShipLength = shipLengt, StarShipModel = shipModel },
+                SpaceTraveller = _travellerRepo.CreateSpaceTraveller(await _travellerRepo.Get(name), traveller),
+                ParkingHouse = new ParkingHouse { Name = "" },
+                StarShip = new StarShip { ShipLength = shipLengt, StarShipModel = shipModel },
 
-                };
+            };
 
-            }
-            else
-            {
-                parking = new Parking
-                {
-                    SpaceTraveller = newTraveller,
-                    ParkingHouse = new ParkingHouse { Name = "" },
-                    StarShip = new StarShip { ShipLength = shipLengt, StarShipModel = shipModel },
-
-                };
-            }
-
-           // await _parkingRepo.AddParking(parking);
+            await _parkingRepo.AddParking(parking);
             return Ok();
-
         }
+
+       
+
     }
+
 }
+
+

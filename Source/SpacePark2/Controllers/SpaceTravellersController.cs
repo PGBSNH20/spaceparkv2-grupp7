@@ -15,31 +15,26 @@ namespace SpacePark2.Controllers
     [ApiController]
     public class SpaceTravellersController : ControllerBase
     {
-        private readonly SpaceParkContext _context;
         private readonly ISpaceTravellerRepo _repo;
 
-        public SpaceTravellersController(SpaceParkContext context, ISpaceTravellerRepo repo)
+        public SpaceTravellersController(ISpaceTravellerRepo repo)
         {
-            _context = context;
             _repo = repo;
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> Get(Guid id)
-        //{
-        //    if (id == Guid.Empty)
-        //        return BadRequest();
+        [HttpPut("checkOut")]
+        public async Task<IActionResult> Put(string name)
+        {
+            var hej = await _repo.Get(name);
+            if (hej == null)
+                return BadRequest("You are not parked here!");
 
-        //    var test = await _context.SpaceTraveller.FindAsync(id);
+            var nästa = await _repo.EndParking(hej);
+            if (nästa == null)
+                return BadRequest("You don't have an ongoing parking");
 
-        //    if (test is null)
-        //        return BadRequest();
-
-        //    return Ok(test);
-        //}
-
-        // istf att felhantera nullbart, overloada med metod som tar inga parametrar
-        //[HttpGet]
+            return Ok($"Cost of parking {nästa.Cost}, have a nice day!");
+        }
 
         [HttpGet("{name}")]
         public async Task<IActionResult> Get(string name)
@@ -49,7 +44,7 @@ namespace SpacePark2.Controllers
             if (traveller is null)
                 return BadRequest();
 
-            return Ok(new{Name= traveller});
+            return Ok(new { Name = traveller });
         }
 
         //[HttpPost("{SpaceTraveller}")]
@@ -63,9 +58,6 @@ namespace SpacePark2.Controllers
         //    return Ok(new {traveller.Name });
         //}
 
-        private bool SpaceTravellerExists(string name)
-        {
-            return _context.SpaceTraveller.Any(e => e.Name == name);
-        }
+      
     }
 }

@@ -36,7 +36,7 @@ namespace Service
                     }
                     else
                     {
-                       
+
                         Console.WriteLine("Error fetching data!");
                     }
                 }
@@ -52,18 +52,17 @@ namespace Service
 
         public async Task<SpaceTraveller> GetSpaceTraveller(string name)
         {
-            SearchResultTraveller search = null;
-            NamePath = $"https://swapi.dev/api/people/?search={name}";
 
+            if (name != null)
+            {
+                NamePath = $"https://swapi.dev/api/people/?search={name}";
+                var search = await GetStarWarsObject<SearchResultTraveller>(NamePath);
 
-            if(name != null)
-            search = await GetStarWarsObject<SearchResultTraveller>(NamePath);
-
-            if(search !=null && search.results[0].Name.ToLower() == name.ToLower())
-               return search.results[0];
+                if (search.count > 0 && search.results[0].Name.ToLower() == name.ToLower())
+                    return search.results[0];
+            }
 
             return null;
-           
         }
 
         public async Task<List<string>> ChooseStarShip(SpaceTraveller person)
@@ -88,8 +87,8 @@ namespace Service
             ShipPath = $"https://swapi.dev/api/starships/?search={shipName}";
 
             var starShip = await GetStarWarsObject<SearchResultStarShip>(ShipPath);
-            
-            return double.Parse(starShip.results[0].length.Replace('.',','));
+
+            return double.Parse(starShip.results[0].length.Replace('.', ','));
         }
 
         public void Dispose()

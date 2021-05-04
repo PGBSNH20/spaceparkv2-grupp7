@@ -28,9 +28,20 @@ namespace SpacePark2.Repositories
             return entity;
         }
 
+        public async Task Update<T>(T entity) where T : class
+        {
+            await _context.AddAsync(entity);
+            await Save();
+        }
+        public async Task Update<T>(T[] entity) where T : class
+        {
+            await _context.AddRangeAsync(entity);
+            await Save();
+        }
         public async Task<bool> Save()
         {
             return await _context.SaveChangesAsync() > 0;
         }
+
     }
 }
