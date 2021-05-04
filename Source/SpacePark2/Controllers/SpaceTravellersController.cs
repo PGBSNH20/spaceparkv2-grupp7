@@ -15,21 +15,21 @@ namespace SpacePark2.Controllers
     [ApiController]
     public class SpaceTravellersController : ControllerBase
     {
-        private readonly ISpaceTravellerRepo _repo;
+        private readonly ISpaceTravellerRepository _travellerRepository;
 
-        public SpaceTravellersController(ISpaceTravellerRepo repo)
+        public SpaceTravellersController(ISpaceTravellerRepository repo)
         {
-            _repo = repo;
+            _travellerRepository = repo;
         }
 
         [HttpPut("checkOut")]
         public async Task<IActionResult> Put(string name)
         {
-            var hej = await _repo.Get(name);
+            var hej = await _travellerRepository.Get(name);
             if (hej == null)
                 return BadRequest("You are not parked here!");
 
-            var nästa = await _repo.EndParking(hej);
+            var nästa = await _travellerRepository.EndParking(hej);
             if (nästa == null)
                 return BadRequest("You don't have an ongoing parking");
 
@@ -39,7 +39,7 @@ namespace SpacePark2.Controllers
         [HttpGet("{name}")]
         public async Task<IActionResult> Get(string name)
         {
-            var traveller = await _repo.Get(name);
+            var traveller = await _travellerRepository.Get(name);
 
             if (traveller is null)
                 return BadRequest();

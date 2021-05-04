@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SpacePark2.Repositories
 {
-    public interface IStarShipRepo : IRepository
+    public interface IParkingRepository
     {
-        Task Post(StarShip starShip);
-        
+        Task AddParking(Parking parking);
     }
 }

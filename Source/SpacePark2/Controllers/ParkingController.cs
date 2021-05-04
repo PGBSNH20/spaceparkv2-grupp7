@@ -14,14 +14,14 @@ namespace SpacePark2.Controllers
     [ApiController]
     public class ParkingController : ControllerBase
     {
-        private readonly ISpaceTravellerRepo _travellerRepo;
-        private readonly IParkingRepo _parkingRepo;
+        private readonly ISpaceTravellerRepository _travellerRepository;
+        private readonly IParkingRepository _parkingRepository;
         
 
-        public ParkingController(ISpaceTravellerRepo travellerRepo, IParkingRepo parkingRepo)
+        public ParkingController(ISpaceTravellerRepository travellerRepository, IParkingRepository parkingRepository)
         {
-            _travellerRepo = travellerRepo;
-            _parkingRepo = parkingRepo;
+            _travellerRepository = travellerRepository;
+            _parkingRepository = parkingRepository;
         }
 
         /// <summary>
@@ -50,13 +50,13 @@ namespace SpacePark2.Controllers
 
             var parking = new Parking
             {
-                SpaceTraveller = _travellerRepo.CreateSpaceTraveller(await _travellerRepo.Get(name), traveller),
+                SpaceTraveller = _travellerRepository.CreateSpaceTraveller(await _travellerRepository.Get(name), traveller),
                 ParkingHouse = new ParkingHouse { Name = "" },
                 StarShip = new StarShip { ShipLength = shipLengt, StarShipModel = shipModel },
 
             };
 
-            await _parkingRepo.AddParking(parking);
+            await _parkingRepository.AddParking(parking);
             return Ok();
         }
 

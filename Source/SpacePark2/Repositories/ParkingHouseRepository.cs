@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace SpacePark2.Repositories
 {
-    public class ParkingHouseRepo :Repository,IParkingHouseRepo
+    public class ParkingHouseRepository :Repository,IParkingHouseRepository
     {
-        public ParkingHouseRepo(SpaceParkContext context) : base(context) { }
+        public ParkingHouseRepository(SpaceParkContext context) : base(context) { }
         
     }
 }

@@ -8,7 +8,7 @@ using SpacePark2.Repositories;
 
 namespace SpacePark2Test
 {
-    class SpaceTravellerRepoTest : ISpaceTravellerRepo
+    class SpaceTravellerRepoTest : ISpaceTravellerRepository
     {
 
         public Task<T> Add<T>(T entity) where T : class

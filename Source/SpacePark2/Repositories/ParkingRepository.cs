@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace SpacePark2.Repositories
 {
-    public class ParkingRepo : Repository, IParkingRepo
+    public class ParkingRepository : Repository, IParkingRepository
     {
-        public ParkingRepo(SpaceParkContext context) : base(context) { }
+        public ParkingRepository(SpaceParkContext context) : base(context) { }
 
 
         public async Task AddParking(Parking parking)
         {
-            _context.Add(parking);
-            await Save();
+            await Add(parking);
         }
 
 

@@ -8,9 +8,9 @@ using SpacePark2.Models;
 
 namespace SpacePark2.Repositories
 {
-    public class SpaceTravellerRepo : Repository, ISpaceTravellerRepo
+    public class SpaceTravellerRepository : Repository, ISpaceTravellerRepository
     {
-        public SpaceTravellerRepo(SpaceParkContext context) : base(context) { }
+        public SpaceTravellerRepository(SpaceParkContext context) : base(context) { }
 
 
         public SpaceTraveller CreateSpaceTraveller(SpaceTraveller existingTraveller, Service.SpaceTraveller newTraveller)
@@ -49,13 +49,6 @@ namespace SpacePark2.Repositories
         {
             return (int)(Math.Round(timeParked, 0) * 250);
         }
-
-        //public async Task<string> GetSpaceTravellerByName(string name)
-        //{
-        //    // dbcontext tjafs
-        //    await Task.Delay(1);
-        //    return $"Habitant {name}";
-        //}
 
     }
 }
