@@ -10,6 +10,8 @@ namespace SpacePark2.Repositories
     {
         Task<T> Add<T>(T entity) where T : class;
         Task<T> Delete<T>(T entity) where T : class;
+        Task Update<T>(T entity) where T : class;
+        Task Update<T>(T[] entity) where T : class;
         Task<bool> Save();
     }
 }

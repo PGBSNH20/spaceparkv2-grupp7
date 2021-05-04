@@ -24,22 +24,11 @@ namespace SpacePark2.Controllers
             _repo = repo;
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> Get(Guid id)
-        //{
-        //    if (id == Guid.Empty)
-        //        return BadRequest();
+        [HttpPut("checkOut")]
+        public async Task<IActionResult> Put(string name)
+        {
 
-        //    var test = await _context.SpaceTraveller.FindAsync(id);
-
-        //    if (test is null)
-        //        return BadRequest();
-
-        //    return Ok(test);
-        //}
-
-        // istf att felhantera nullbart, overloada med metod som tar inga parametrar
-        //[HttpGet]
+        }
 
         [HttpGet("{name}")]
         public async Task<IActionResult> Get(string name)
@@ -49,7 +38,7 @@ namespace SpacePark2.Controllers
             if (traveller is null)
                 return BadRequest();
 
-            return Ok(new{Name= traveller});
+            return Ok(new { Name = traveller });
         }
 
         //[HttpPost("{SpaceTraveller}")]
