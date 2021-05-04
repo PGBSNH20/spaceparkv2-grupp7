@@ -10,21 +10,11 @@ namespace SpacePark2Test
 {
     class SpaceTravellerRepoTest : ISpaceTravellerRepository
     {
-
-        public Task<T> Add<T>(T entity) where T : class
+        public async Task<SpaceTraveller> Get(Guid id)
         {
-            throw new NotImplementedException();
-        }
+            await Task.Delay(1);
 
-        public Task<T> Delete<T>(T entity) where T : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<SpaceTraveller> Get(Guid id)
-        {
-
-            throw new NotImplementedException();
+            return new SpaceTraveller() { Id = id, Name = "Chewbacca" };
         }
 
         public async Task<SpaceTraveller> Get(string name)
@@ -36,25 +26,24 @@ namespace SpacePark2Test
                 Id = Guid.NewGuid(),
                 Name = "Sam"
             };
-
         }
 
-        public Task<string> GetSpaceTravellerByName(string name)
+        public Task Update(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Task Post(SpaceTraveller traveller)
+        public Task<T> Add<T>(T entity) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> Delete<T>(T entity) where T : class
         {
             throw new NotImplementedException();
         }
 
         public Task<bool> Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Update(string name)
         {
             throw new NotImplementedException();
         }
