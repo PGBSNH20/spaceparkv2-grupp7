@@ -49,12 +49,12 @@ namespace SpacePark2.Controllers
                 return BadRequest("You don't have any parking history");
 
             var history = await _parkingRepository.History(traveller);
-            //join parking
-            //
-            //visa i OK
-            return Ok(history);
+            if (history != null)
+                return Ok(history);
+
+            return BadRequest("No history found");
         }
-       
+
 
     }
 }
