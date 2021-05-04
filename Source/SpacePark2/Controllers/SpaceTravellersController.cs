@@ -16,48 +16,45 @@ namespace SpacePark2.Controllers
     public class SpaceTravellersController : ControllerBase
     {
         private readonly ISpaceTravellerRepository _travellerRepository;
+        private readonly IParkingRepository _parkingRepository;
 
-        public SpaceTravellersController(ISpaceTravellerRepository repo)
+        public SpaceTravellersController(ISpaceTravellerRepository travellerRepository, IParkingRepository parkingRepository)
         {
-            _travellerRepository = repo;
+            _travellerRepository = travellerRepository;
+            _parkingRepository = parkingRepository;
         }
 
         [HttpPut("checkOut")]
         public async Task<IActionResult> Put(string name)
         {
-            var hej = await _travellerRepository.Get(name);
-            if (hej == null)
+            var spaceTraveller = await _travellerRepository.Get(name);
+            if (spaceTraveller == null)
                 return BadRequest("You are not parked here!");
 
-            var nästa = await _travellerRepository.EndParking(hej);
-            if (nästa == null)
-                return BadRequest("You don't have an ongoing parking");
+            var onGoingParking = await _parkingRepository.EndParking(spaceTraveller);
+            if (onGoingParking != null)
+                return Ok($"Cost of parking {onGoingParking.Cost}, have a nice day!");
 
-            return Ok($"Cost of parking {nästa.Cost}, have a nice day!");
+            return BadRequest("You don't have an ongoing parking");
         }
 
-        [HttpGet("{name}")]
+
+        [HttpGet("{name}/history")]
+
         public async Task<IActionResult> Get(string name)
         {
             var traveller = await _travellerRepository.Get(name);
 
             if (traveller is null)
-                return BadRequest();
+                return BadRequest("You don't have any parking history");
 
-            return Ok(new { Name = traveller });
+            var history = await _parkingRepository.History(traveller);
+            //join parking
+            //
+            //visa i OK
+            return Ok(history);
         }
+       
 
-        //[HttpPost("{SpaceTraveller}")]
-        //public async Task<IActionResult> Post(SpaceTraveller traveller)
-        //{
-        //    //finns denna i swappi
-        //    //ja skicka till databasen
-        //    // nej skicka felkod
-        //    await _repo.Post(traveller);
-        //    await _repo.Save();
-        //    return Ok(new {traveller.Name });
-        //}
-
-      
     }
 }

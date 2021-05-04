@@ -9,5 +9,8 @@ namespace SpacePark2.Repositories
     public interface IParkingRepository
     {
         Task AddParking(Parking parking);
+        Task<Parking> EndParking(SpaceTraveller traveller);
+        Task<List<Parking>> History(SpaceTraveller traveller);
+
     }
 }

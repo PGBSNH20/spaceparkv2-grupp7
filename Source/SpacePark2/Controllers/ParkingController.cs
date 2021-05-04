@@ -40,7 +40,7 @@ namespace SpacePark2.Controllers
             if (traveller == null)
                 return BadRequest("You have entered an invalid input");
 
-            // metod som validerar parkinghouse
+            //TODO metod som validerar parkinghouse och nekar om de ej finns
 
             var starShips = await swapi.ChooseStarShip(traveller);
             if (!starShips.Contains(shipModel.ToLower()))
