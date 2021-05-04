@@ -8,7 +8,7 @@ using SpacePark2.Repositories;
 
 namespace SpacePark2Test
 {
-    class SpaceTravellerRepoTest : ISpaceTravellerRepository
+    class SpaceTravellerRepositoryTest : ISpaceTravellerRepository
     {
         public async Task<SpaceTraveller> Get(Guid id)
         {
@@ -24,12 +24,18 @@ namespace SpacePark2Test
             return new SpaceTraveller()
             {
                 Id = Guid.NewGuid(),
-                Name = "Sam"
+                Name = name
             };
         }
 
-        public Task Update(string name)
+        public Task<Parking> EndParking(SpaceTraveller traveller)
         {
+            throw new NotImplementedException();
+        }
+
+        public SpaceTraveller CreateSpaceTraveller(SpaceTraveller existingTraveller, Service.SpaceTraveller newTraveller)
+        {
+            // använd SpaceTraveller i SpacePark2
             throw new NotImplementedException();
         }
 
@@ -39,6 +45,16 @@ namespace SpacePark2Test
         }
 
         public Task<T> Delete<T>(T entity) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update<T>(T entity) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update<T>(T[] entity) where T : class
         {
             throw new NotImplementedException();
         }

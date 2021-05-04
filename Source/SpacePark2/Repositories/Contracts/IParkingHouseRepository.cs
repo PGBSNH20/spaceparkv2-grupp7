@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SpacePark2.Repositories
 {
-    interface IParkingHouseRepository
+    public interface IParkingHouseRepository
     {
     }
 }

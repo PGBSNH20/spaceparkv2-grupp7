@@ -10,7 +10,7 @@ namespace SpacePark2Test
         [Fact]
         public void GetPerson()
         {
-            ISpaceTravellerRepository TestRepository = new SpaceTravellerRepoTest();
+            ISpaceTravellerRepository TestRepository = new SpaceTravellerRepositoryTest();
             var result = TestRepository.Get("Sam");
             Assert.NotNull((result.Id).ToString());
         }

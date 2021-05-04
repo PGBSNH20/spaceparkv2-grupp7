@@ -8,7 +8,7 @@ using SpacePark2.Repositories;
 
 namespace SpacePark2Test
 {
-    class ParkingRepoTest : IParkingRepo
+    class ParkingRepositoryTest : IParkingRepository
     {
         public Task AddNewParking(ParkingHouse parkingHouse, SpaceTraveller traveller, StarShip starShip)
         {
