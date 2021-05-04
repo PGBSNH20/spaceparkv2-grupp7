@@ -25,15 +25,18 @@ namespace SpacePark2.Repositories
             return await _context.SpaceTraveller.FirstOrDefaultAsync(x => x.Name == name);
         }
 
-        public async Task EndParking(string name)
+        public async Task<Parking> EndParking(SpaceTraveller traveller)
         {
-            var traveller = await _context.SpaceTraveller.SingleOrDefaultAsync(x => x.Name == name);
-            var onGoingParking = await _context.Parking.Include(p => p.SpaceTraveller == traveller)
+            var onGoingParking = await _context.Parking.Include(p => p.SpaceTraveller)
+                .Where(p => p.SpaceTraveller == traveller)
                 .FirstOrDefaultAsync(x => x.DepartureTime == null);
-            int cost = CostOfParking(TimeParked(onGoingParking));
-
-            await Update(new[] { (onGoingParking.DepartureTime = DateTime.Now, onGoingParking.Cost = cost) });
-
+            if (onGoingParking != null)
+            {
+                int cost = CostOfParking(TimeParked(onGoingParking));
+                await Update(new[] { (onGoingParking.DepartureTime = DateTime.Now, onGoingParking.Cost = cost) });
+                return onGoingParking;
+            }
+            return null;
         }
         public double TimeParked(Parking vehicle)
         {
