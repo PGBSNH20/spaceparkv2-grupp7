@@ -9,6 +9,6 @@ namespace SpacePark2.Repositories
     public interface IParkingRepo
     {
         Task AddNewParking(ParkingHouse parkingHouse, SpaceTraveller traveller, StarShip starShip);
-        Task AddParking(Parking parking);
+        Task<List<ParkingHouse>> GetParkingHouses();
     }
 }

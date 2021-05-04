@@ -9,6 +9,5 @@ namespace SpacePark2.Repositories
     {
         Task<SpaceTraveller> Get(string name);
         Task Update(string name);
-
     }
 }
