@@ -31,11 +31,19 @@ namespace SpacePark2Test
 
         public async Task<SpaceTraveller> GetSpaceTraveller(string name)
         {
+            if (name != "Obi-Wan Kenobi")
+                return null;
+
             return ObiWan;
         }
 
         public async Task<List<string>> ChooseStarShip(SpaceTraveller spaceTraveller)
         {
+            if (!spaceTraveller.StarShips.Any())
+            {
+                return null;
+            }
+
             return starShips;
         }
 

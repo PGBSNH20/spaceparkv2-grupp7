@@ -9,8 +9,6 @@ namespace Service
     public class SearchResultTraveller
     {
         public int count { get; set; }
-        public object next { get; set; }
-        public object previous { get; set; }
         public SpaceTraveller[] results { get; set; }
     }
 }

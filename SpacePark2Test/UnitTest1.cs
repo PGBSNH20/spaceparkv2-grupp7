@@ -1,76 +1,102 @@
-//using System;
-//using Microsoft.AspNetCore.Mvc;
-//using Service;
-//using Service.Repository.Contracts;
-//using Xunit;
-//using SpacePark2;
-//using SpacePark2.Controllers;
-//using SpacePark2.Repositories;
+using System;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Service;
+using Service.Repository.Contracts;
+using Xunit;
+using SpacePark2;
+using SpacePark2.Controllers;
+using SpacePark2.Repositories;
+using Xunit.Sdk;
 
-//namespace SpacePark2Test
-//{
-//    public class UnitTest1
-//    {
-//        // Test setup
-//        // Setup
-//        ISwApi swApi = new SwApiTest();
-//        ISpaceTravellerRepository spaceTravellerRepository = new SpaceTravellerRepositoryTest();
-//        IParkingRepository parkingRepository = new ParkingRepositoryTest();
+namespace SpacePark2Test
+{
+    public class UnitTest1
+    {
+        // Test setup
+        // Setup
+        ISwApi swApi = new SwApiTest();
+        ISpaceTravellerRepository spaceTravellerRepository = new SpaceTravellerRepositoryTest();
+        IParkingRepository parkingRepository = new ParkingRepositoryTest();
+        IParkingHouseRepository parkingHouseRepository = new ParkingHouseRepositoryTest();
 
-        
+        [Fact]
+        public async void PostParking_AllValuesValid_ExpectAOK()
+        {
+            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
+
+            // Test
+            var result = await controller.Post("Obi-Wan Kenobi", "SpacePark", "Jedi starfighter");
+
+            Assert.IsAssignableFrom<OkResult>(result);
+
+            // om vi returnerar Ok(nÃ¥gonting)
+            //var r = ((OkResult) result).Value;
+
+        }
+
+        [Fact]
+        public async void PostParking_BadName_ExpectBadRequest()
+        {
+            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
+
+            // Test
+            var result = await controller.Post("Chewie", "SpacePark", "Jedi starfighter");
+
+            Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
+        }
+
+        /* Test jag vill testa
+         [HttpPut("checkOut")]
+        public async Task<IActionResult> Put(string name)
+        {
+            var spaceTraveller = await _travellerRepository.Get(name);
+            if (spaceTraveller == null)
+                return BadRequest("You are not parked here!");
+
+            var onGoingParking = await _parkingRepository.EndParking(spaceTraveller);
+            if (onGoingParking != null)
+                return Ok($"Cost of parking {onGoingParking.Cost}, have a nice day!");
+
+            return BadRequest("You don't have an ongoing parking");
+        }*/
+        [Fact]
+        public async void PutSpaceTraveller_ExistingName_ExpectCostReturn()
+        {
+            var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
+            // Test
+            var result = await controller.Put("Obi-Wan Kenobi");
+
+            Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
+        }
+
+        [Fact]
+        public async void PutSpaceTraveller_BadName_ExpectException()
+        {
+            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
+
+            // Test
+            var result = await controller.Post("Chewie", "SpacePark", "Jedi starfighter");
+
+            Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
+        }
 
 
-//        /* Metod jag vill testa:
-//         public async Task<IActionResult> Post(string travellerName, string parkingHouse, string shipModel)
-//        {
-            
 
-//            var traveller = await swapi.GetSpaceTraveller(travellerName);
-//            if (traveller == null)
-//                return BadRequest("You have entered an invalid input");
+        /*[HttpGet("{name}/history")]
 
-//            //TODO metod som validerar parkinghouse och nekar om de ej finns
-//            // kollar om det
+        public async Task<IActionResult> Get(string name)
+        {
+            var traveller = await _travellerRepository.Get(name);
 
-//            var starShips = await swapi.ChooseStarShip(traveller);
-//            if (!starShips.Contains(shipModel.ToLower()))
-//                return BadRequest("You don't own this Starship");
+            if (traveller is null)
+                return BadRequest("You don't have any parking history");
 
-//            var shipLength = await swapi.GetShipLength(shipModel);
-             
-//            var parking = new Parking
-//            {
-//                SpaceTraveller = _travellerRepository.CreateSpaceTraveller(await _travellerRepository.Get(travellerName), traveller),
-//                ParkingHouse = new ParkingHouse { Name = ""},
-//                StarShip = new StarShip { ShipLength = shipLength, StarShipModel = shipModel },
-//            };
+            var history = await _parkingRepository.History(traveller);
+            if (history != null)
+                return Ok(history);
 
-//            await _parkingRepository.AddParking(parking);
-//            return Ok();
-//        }*/
-//        [Fact]
-//        public async void PostParking_AllValuesValid_ExpectAOK()
-//        {
-            
-//            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, swApi);
-
-
-//            // Test
-//            var result = await controller.Post("Obi-Wan Kenobi", "SpacePark", "Milennium Falcon");
-
-//            Assert.IsAssignableFrom<OkObjectResult>(result);
-
-//            // om vi returnerar Ok(någonting)
-//            //var r = ((OkObjectResult) result).Value;
-
-//        }
-
-//        [Fact]
-//        public void GetPerson()
-//        {
-//            ISpaceTravellerRepository TestRepository = new SpaceTravellerRepositoryTest();
-//            var result = TestRepository.Get("Sam");
-//            Assert.NotNull((result.Id).ToString());
-//        }
-//    }
-//}
+            return BadRequest("No history found");
+        }*/
+    }
+}

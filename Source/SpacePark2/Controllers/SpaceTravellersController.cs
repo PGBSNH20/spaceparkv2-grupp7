@@ -54,7 +54,5 @@ namespace SpacePark2.Controllers
 
             return BadRequest("No history found");
         }
-
-
     }
 }
