@@ -59,15 +59,13 @@ namespace SpacePark2.Repositories
             }
             return condition;
         }
-        public bool CheckIfParked(string name)
+        public async Task<bool> CheckIfParked(Models.SpaceTraveller spaceTraveller)
         {
-            bool condition = false;
-            foreach (var parked in _context.Parking)
-            {
-                if (name == parked.SpaceTraveller.Name)
-                    condition = true;
-            }
-            return condition;
+            
+            var query = await _context.Parking.Include(x => x.SpaceTraveller).Where(x => x.SpaceTraveller == spaceTraveller).FirstOrDefaultAsync(x => x.DepartureTime == null);
+            if (query != null)
+                return true;
+            return false;
         }
     }
 }

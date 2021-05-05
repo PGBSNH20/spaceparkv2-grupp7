@@ -47,12 +47,12 @@ namespace SpacePark2.Controllers
             // kollar om det
             var selectedParkingHouse = await _parkingHouseRepository.Get(parkingHouse);
             var starShips = await _swApi.ChooseStarShip(traveller);
-            var shipLength = await _swApi.GetShipLength(shipModel);
-
             if (!starShips.Contains(shipModel.ToLower()))
                 return BadRequest("You don't own this Starship");
 
-            if (_parkingRepository.CheckIfParked(travellerName))
+            var shipLength = await _swApi.GetShipLength(shipModel);
+
+            if (await _parkingRepository.CheckIfParked(await _travellerRepository.Get(travellerName)))
                 return BadRequest("You're already parked, go find your spaceship!");
 
             if(!_parkingRepository.CheckCapacity(shipLength, selectedParkingHouse).Result)

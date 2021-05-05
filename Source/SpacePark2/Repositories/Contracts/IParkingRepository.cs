@@ -12,6 +12,6 @@ namespace SpacePark2.Repositories
         Task<Parking> EndParking(SpaceTraveller traveller);
         Task<List<Parking>> History(SpaceTraveller traveller);
         Task<bool> CheckCapacity(double shipLength, ParkingHouse parkingHouse);
-        bool CheckIfParked(string name);
+        Task<bool> CheckIfParked(SpaceTraveller spaceTraveller);
     }
 }
