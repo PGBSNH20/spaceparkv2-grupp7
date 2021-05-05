@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpacePark2;
 
 namespace SpacePark2.Migrations
 {
     [DbContext(typeof(SpaceParkContext))]
-    partial class SpaceParkContextModelSnapshot : ModelSnapshot
+    [Migration("20210505092809_SeededData")]
+    partial class SeededData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,12 +73,12 @@ namespace SpacePark2.Migrations
                         new
                         {
                             Id = new Guid("662c03dc-52c6-44dc-9860-df1b865ef8ce"),
-                            Name = "ParkingHouseSun"
+                            Name = "Naboo Parking Complex"
                         },
                         new
                         {
                             Id = new Guid("2cfd2095-60d5-4301-8deb-e6df6850105e"),
-                            Name = "ParkingHouseMoon"
+                            Name = "Hoth SpacePort"
                         });
                 });
 

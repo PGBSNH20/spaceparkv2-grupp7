@@ -11,7 +11,7 @@ namespace SpacePark2
 {
     public class SpaceParkContext : DbContext
     {
-        public DbSet<Parking> Parking { get; set;}
+        public DbSet<Parking> Parking { get; set; }
         public DbSet<ParkingHouse> ParkingHouse { get; set; }
         public DbSet<SpaceTraveller> SpaceTraveller { get; set; }
         public DbSet<StarShip> StarShip { get; set; }
@@ -31,6 +31,15 @@ namespace SpacePark2
             var config = builder.Build();
             var defaultConnectionString = config.GetConnectionString("Default");
             optionsBuilder.UseSqlServer(defaultConnectionString);
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ParkingHouse>().HasData(
+
+                new ParkingHouse { Id = Guid.NewGuid(), Name = "Naboo Parking Complex" },
+                new ParkingHouse { Id = Guid.NewGuid(), Name = "Hoth SpacePort" }
+
+                );
         }
     }
 }
