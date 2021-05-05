@@ -10,9 +10,9 @@ namespace SpacePark2Test
 {
     class ParkingRepositoryTest : IParkingRepository
     {
-        public Task AddParking(Parking parking)
+        public async Task AddParking(Parking parking)
         {
-            throw new NotImplementedException();
+            await Task.Delay(1);
         }
 
         public Task<Parking> EndParking(SpaceTraveller traveller)
