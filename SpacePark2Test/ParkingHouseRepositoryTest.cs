@@ -20,9 +20,12 @@ namespace SpacePark2Test
             throw new NotImplementedException();
         }
 
-        public Task<ParkingHouse> Get(string name)
+        public async Task<ParkingHouse> Get(string name)
         {
-            throw new NotImplementedException();
+            if (name == "NabooGalleria")
+                return new() {Name = name, Capacity = 987.6};
+
+            return null;
         }
     }
 }

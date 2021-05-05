@@ -15,9 +15,22 @@ namespace SpacePark2Test
             await Task.Delay(1);
         }
 
-        public Task<bool> CheckCapacity(double shipLength, ParkingHouse parkingHouse)
+        public async Task<bool> CheckCapacity(double shipLength, ParkingHouse parkingHouse)
         {
-            throw new NotImplementedException();
+            await Task.Delay(1);
+
+            bool condition = false;
+            if ((parkingHouse.Capacity - shipLength) > 0)
+            {
+                condition = true;
+            }
+            return condition;
+        }
+
+        public async Task<bool> CheckIfParked(SpaceTraveller spaceTraveller)
+        {
+            await Task.Delay(1);
+            return false;
         }
 
         public bool CheckIfParked(string name)
@@ -25,7 +38,7 @@ namespace SpacePark2Test
             throw new NotImplementedException();
         }
 
-        public Task<Parking> EndParking(SpaceTraveller traveller)
+        public async Task<Parking> EndParking(SpaceTraveller traveller)
         {
             if (traveller.Name == "Obi-Wan Kenobi")
             {

@@ -10,7 +10,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 
-    <DocumentationFile>C:\Users\joaki\Source\Repos\spaceparkv2-grupp7\Source\SpacePark2\SpacePark2.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 

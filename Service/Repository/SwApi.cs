@@ -16,6 +16,7 @@ namespace Service.Repository
         public string ShipPath { get; set; }
 
         readonly HttpClient Client = new();
+        // TODO Kolla så allt har ToLower
 
         public async Task<T> GetStarWarsObject<T>(string path)
         {

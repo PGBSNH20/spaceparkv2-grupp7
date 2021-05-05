@@ -49,7 +49,7 @@ namespace SpacePark2Test
 
         public async Task<double> GetShipLength(string shipName)
         {
-            switch (shipName)
+            switch (shipName.ToLower())
             {
                 case "jedi starfighter":
                     return 8.0;

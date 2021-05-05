@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpacePark2.Repositories
 {
-    public class ParkingHouseRepository :Repository,IParkingHouseRepository
+    public class ParkingHouseRepository :Repository, IParkingHouseRepository
     {
         public ParkingHouseRepository(SpaceParkContext context) : base(context) { }
 
@@ -15,6 +15,7 @@ namespace SpacePark2.Repositories
         {
           return  await _context.ParkingHouse.ToListAsync();
         }
+
         public async Task<ParkingHouse> Get(string name)
         {
             return await _context.ParkingHouse.FirstOrDefaultAsync(x => x.Name == name);
