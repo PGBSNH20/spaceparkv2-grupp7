@@ -24,7 +24,7 @@ namespace SpacePark2.Controllers
             _parkingRepository = parkingRepository;
         }
 
-        [HttpPut("checkOut")]
+        [HttpPut("{name}/checkOut")]
         public async Task<IActionResult> Put(string name)
         {
             var spaceTraveller = await _travellerRepository.Get(name);
