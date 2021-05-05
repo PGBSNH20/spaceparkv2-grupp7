@@ -32,10 +32,11 @@ namespace SpacePark2.Repositories
         }
         public async Task<List<Parking>> History(Models.SpaceTraveller traveller)
         {
+
             return await _context.Parking
                   .Include(x => x.SpaceTraveller)
                   .Include(x => x.StarShip)
-                  .Include(x=> x.ParkingHouse)
+                  .Include(x => x.ParkingHouse)
                   .Where(p => p.SpaceTraveller == traveller).ToListAsync();
         }
         public double TimeParked(Parking vehicle)
