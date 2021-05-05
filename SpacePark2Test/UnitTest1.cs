@@ -11,6 +11,14 @@ namespace SpacePark2Test
 {
     public class UnitTest1
     {
+        // Test setup
+        // Setup
+        ISwApi swApi = new SwApiTest();
+        ISpaceTravellerRepository spaceTravellerRepository = new SpaceTravellerRepositoryTest();
+        IParkingRepository parkingRepository = new ParkingRepositoryTest();
+
+        
+
 
         /* Metod jag vill testa:
          public async Task<IActionResult> Post(string travellerName, string parkingHouse, string shipModel)
@@ -43,10 +51,7 @@ namespace SpacePark2Test
         [Fact]
         public async void PostParking_AllValuesValid_ExpectAOK()
         {
-            // Setup
-            ISwApi swApi = new SwApiTest();
-            ISpaceTravellerRepository spaceTravellerRepository = new SpaceTravellerRepositoryTest();
-            IParkingRepository parkingRepository = new ParkingRepositoryTest();
+            
             var controller = new ParkingController(spaceTravellerRepository, parkingRepository, swApi);
 
 

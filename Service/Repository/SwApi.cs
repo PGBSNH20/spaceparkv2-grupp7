@@ -62,15 +62,15 @@ namespace Service.Repository
             return null;
         }
 
-        public async Task<List<string>> ChooseStarShip(SpaceTraveller person)
+        public async Task<List<string>> ChooseStarShip(SpaceTraveller spaceTraveller)
         {
             List<string> starShips = new();
-            if (!person.StarShips.Any())
+            if (!spaceTraveller.StarShips.Any())
             {
                 return null;
             }
 
-            foreach (var starShip in person.StarShips)
+            foreach (var starShip in spaceTraveller.StarShips)
             {
                 var search = await GetStarWarsObject<Starship>(starShip);
                 starShips.Add(search.Name.ToLower());

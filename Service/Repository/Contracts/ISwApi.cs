@@ -7,7 +7,7 @@ namespace Service.Repository.Contracts
     {
         Task<T> GetStarWarsObject<T>(string path);
         Task<SpaceTraveller> GetSpaceTraveller(string name);
-        Task<List<string>> ChooseStarShip(SpaceTraveller person);
+        Task<List<string>> ChooseStarShip(SpaceTraveller spaceTraveller);
         Task<double> GetShipLength(string shipName);
     }
 }
