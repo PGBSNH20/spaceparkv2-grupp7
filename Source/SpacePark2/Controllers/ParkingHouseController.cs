@@ -18,13 +18,14 @@ namespace SpacePark2.Controllers
         {
             _parkingHouseRepository = parkingHouseRepository;
         }
-        [HttpPost("{ParinkHouse}")]
+
+        [HttpPost("{ParkingHouse}")]
         public async Task<IActionResult> Post(string name)
         {
             await _parkingHouseRepository.Post(name);
             return Ok();
-
         }
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
