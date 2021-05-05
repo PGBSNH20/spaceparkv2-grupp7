@@ -11,6 +11,7 @@ namespace SpacePark2.Models
         [Key]
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public double Capacity { get; set; }
 
         public ParkingHouse()
         {

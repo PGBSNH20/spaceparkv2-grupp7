@@ -10,7 +10,7 @@ using SpacePark2;
 namespace SpacePark2.Migrations
 {
     [DbContext(typeof(SpaceParkContext))]
-    [Migration("20210505092809_SeededData")]
+    [Migration("20210505114224_SeededData")]
     partial class SeededData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,7 +62,11 @@ namespace SpacePark2.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<double>("Capacity")
+                        .HasColumnType("float");
+
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -72,12 +76,14 @@ namespace SpacePark2.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("662c03dc-52c6-44dc-9860-df1b865ef8ce"),
+                            Id = new Guid("3c07e5ed-a15a-46f5-a06e-2164ef7cceb0"),
+                            Capacity = 4000.0,
                             Name = "Naboo Parking Complex"
                         },
                         new
                         {
-                            Id = new Guid("2cfd2095-60d5-4301-8deb-e6df6850105e"),
+                            Id = new Guid("6301dd96-c3f6-43dc-9047-563c8859d1c9"),
+                            Capacity = 6000.0,
                             Name = "Hoth SpacePort"
                         });
                 });
@@ -89,6 +95,7 @@ namespace SpacePark2.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -106,6 +113,7 @@ namespace SpacePark2.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("StarShipModel")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

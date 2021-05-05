@@ -48,5 +48,26 @@ namespace SpacePark2.Repositories
         {
             return (int)(Math.Round(timeParked, 0) * 250);
         }
+        public async Task<bool> CheckCapacity(double shipLength, ParkingHouse parkingHouse)
+        {
+            bool condition = false;
+            if ((parkingHouse.Capacity - shipLength) > 0)
+            {
+                parkingHouse.Capacity -= shipLength;
+                await Update(parkingHouse);
+                condition = true;
+            }
+            return condition;
+        }
+        public bool CheckIfParked(string name)
+        {
+            bool condition = false;
+            foreach (var parked in _context.Parking)
+            {
+                if (name == parked.SpaceTraveller.Name)
+                    condition = true;
+            }
+            return condition;
+        }
     }
 }

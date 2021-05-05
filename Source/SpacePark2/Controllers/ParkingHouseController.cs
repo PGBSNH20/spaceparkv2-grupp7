@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SpacePark2.Models;
 using SpacePark2.Repositories;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,9 @@ namespace SpacePark2.Controllers
             _parkingHouseRepository = parkingHouseRepository;
         }
         [HttpPost("{ParinkHouse}")]
-        public async Task<IActionResult> Post(string name)
+        public async Task<IActionResult> Post(string name, StarShip starShip)
         {
+            
             await _parkingHouseRepository.Post(name);
             return Ok();
 

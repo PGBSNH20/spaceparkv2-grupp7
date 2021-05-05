@@ -10,5 +10,6 @@ namespace SpacePark2.Repositories
     {
         Task Post(string name);
         Task<List<ParkingHouse>> Get();
+        Task<ParkingHouse> Get(string name);
     }
 }

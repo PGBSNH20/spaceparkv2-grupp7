@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using SpacePark2.Repositories;
 using System.Reflection;
 using System.IO;
+using Service.Repository;
+using Service.Repository.Contracts;
 
 namespace SpacePark2
 {
@@ -49,6 +51,7 @@ namespace SpacePark2
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IParkingRepository, ParkingRepository>();
             services.AddScoped<IParkingHouseRepository, ParkingHouseRepository>();
+            services.AddScoped<ISwApi, SwApi>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

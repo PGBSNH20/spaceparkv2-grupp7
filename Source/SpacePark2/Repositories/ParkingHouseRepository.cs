@@ -15,6 +15,10 @@ namespace SpacePark2.Repositories
         {
           return  await _context.ParkingHouse.ToListAsync();
         }
+        public async Task<ParkingHouse> Get(string name)
+        {
+            return await _context.ParkingHouse.FirstOrDefaultAsync(x => x.Name == name);
+        }
 
         public async Task Post(string name)
         {
