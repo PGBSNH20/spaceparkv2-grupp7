@@ -19,19 +19,26 @@ namespace SpacePark2Test
 
         public async Task<SpaceTraveller> Get(string name)
         {
-            await Task.Delay(1); 
+            await Task.Delay(1);
 
-            return new SpaceTraveller()
+            if (name == "Obi-Wan Kenobi")
             {
-                Id = Guid.NewGuid(),
-                Name = name
-            };
+                return new SpaceTraveller()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = name
+                };
+            }
+
+            return null;
         }
 
         public SpaceTraveller CreateSpaceTraveller(SpaceTraveller existingTraveller, Service.SpaceTraveller newTraveller)
         {
-            // använd SpaceTraveller i SpacePark2
-            throw new NotImplementedException();
+            if (existingTraveller != null)
+                return existingTraveller;
+
+            return new SpaceTraveller() {Name = newTraveller.Name};
         }
 
         public Task<T> Add<T>(T entity) where T : class
