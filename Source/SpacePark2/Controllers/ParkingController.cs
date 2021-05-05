@@ -17,13 +17,15 @@ namespace SpacePark2.Controllers
     {
         private readonly ISpaceTravellerRepository _travellerRepository;
         private readonly IParkingRepository _parkingRepository;
+        private readonly IParkingHouseRepository _parkingHouseRepository;
         private readonly ISwApi _swApi;
 
 
-        public ParkingController(ISpaceTravellerRepository travellerRepository, IParkingRepository parkingRepository, ISwApi swApi)
+        public ParkingController(ISpaceTravellerRepository travellerRepository, IParkingRepository parkingRepository, IParkingHouseRepository parkingHouseRepository, ISwApi swApi)
         {
             _travellerRepository = travellerRepository;
             _parkingRepository = parkingRepository;
+            _parkingHouseRepository = parkingHouseRepository;
             _swApi = swApi;
         }
 
@@ -43,22 +45,28 @@ namespace SpacePark2.Controllers
 
             //TODO metod som validerar parkinghouse och nekar om de ej finns
             // kollar om det
-
+            var selectedParkingHouse = await _parkingHouseRepository.Get(parkingHouse);
             var starShips = await _swApi.ChooseStarShip(traveller);
             if (!starShips.Contains(shipModel.ToLower()))
                 return BadRequest("You don't own this Starship");
 
             var shipLength = await _swApi.GetShipLength(shipModel);
-             
+
+            if (await _parkingRepository.CheckIfParked(await _travellerRepository.Get(travellerName)))
+                return BadRequest("You're already parked, go find your spaceship!");
+
+            if(!_parkingRepository.CheckCapacity(shipLength, selectedParkingHouse).Result)
+                return BadRequest("There is no room in this parking structure");
+            
             var parking = new Parking
             {
                 SpaceTraveller = _travellerRepository.CreateSpaceTraveller(await _travellerRepository.Get(travellerName), traveller),
-                ParkingHouse = new ParkingHouse { Name = ""},
+                ParkingHouse = selectedParkingHouse,
                 StarShip = new StarShip { ShipLength = shipLength, StarShipModel = shipModel },
             };
 
             await _parkingRepository.AddParking(parking);
-            return Ok();
+            return Ok("You're parked!");
         }
     }
 }

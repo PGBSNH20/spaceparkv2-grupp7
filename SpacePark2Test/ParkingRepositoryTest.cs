@@ -15,6 +15,16 @@ namespace SpacePark2Test
             throw new NotImplementedException();
         }
 
+        public Task<bool> CheckCapacity(double shipLength, ParkingHouse parkingHouse)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckIfParked(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Parking> EndParking(SpaceTraveller traveller)
         {
             throw new NotImplementedException();

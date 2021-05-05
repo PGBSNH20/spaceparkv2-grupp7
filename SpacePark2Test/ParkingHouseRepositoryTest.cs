@@ -19,5 +19,10 @@ namespace SpacePark2Test
         {
             throw new NotImplementedException();
         }
+
+        public Task<ParkingHouse> Get(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

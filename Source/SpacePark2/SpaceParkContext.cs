@@ -36,8 +36,8 @@ namespace SpacePark2
         {
             modelBuilder.Entity<ParkingHouse>().HasData(
 
-                new ParkingHouse { Id = Guid.NewGuid(), Name = "Naboo Parking Complex" },
-                new ParkingHouse { Id = Guid.NewGuid(), Name = "Hoth SpacePort" }
+                new ParkingHouse { Id = Guid.NewGuid(), Name = "Naboo Parking Complex", Capacity = 4000 },
+                new ParkingHouse { Id = Guid.NewGuid(), Name = "Hoth SpacePort", Capacity = 6000 }
 
                 );
         }
