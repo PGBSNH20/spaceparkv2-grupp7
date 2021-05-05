@@ -18,11 +18,12 @@ namespace SpacePark2Test
         ISwApi swApi = new SwApiTest();
         ISpaceTravellerRepository spaceTravellerRepository = new SpaceTravellerRepositoryTest();
         IParkingRepository parkingRepository = new ParkingRepositoryTest();
+        IParkingHouseRepository parkingHouseRepository = new ParkingHouseRepositoryTest();
 
         [Fact]
         public async void PostParking_AllValuesValid_ExpectAOK()
         {
-            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, swApi);
+            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
 
             // Test
             var result = await controller.Post("Obi-Wan Kenobi", "SpacePark", "Jedi starfighter");
@@ -37,7 +38,7 @@ namespace SpacePark2Test
         [Fact]
         public async void PostParking_BadName_ExpectBadRequest()
         {
-            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, swApi);
+            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
 
             // Test
             var result = await controller.Post("Chewie", "SpacePark", "Jedi starfighter");
@@ -72,7 +73,7 @@ namespace SpacePark2Test
         [Fact]
         public async void PutSpaceTraveller_BadName_ExpectException()
         {
-            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, swApi);
+            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
 
             // Test
             var result = await controller.Post("Chewie", "SpacePark", "Jedi starfighter");
