@@ -15,7 +15,17 @@ namespace SpacePark2Test
             await Task.Delay(1);
         }
 
-        public async Task<Parking> EndParking(SpaceTraveller traveller)
+        public Task<bool> CheckCapacity(double shipLength, ParkingHouse parkingHouse)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckIfParked(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Parking> EndParking(SpaceTraveller traveller)
         {
             if (traveller.Name == "Obi-Wan Kenobi")
             {

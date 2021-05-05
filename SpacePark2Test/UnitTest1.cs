@@ -29,7 +29,7 @@ namespace SpacePark2Test
 
             Assert.IsAssignableFrom<OkResult>(result);
 
-            // om vi returnerar Ok(någonting)
+            // om vi returnerar Ok(nÃ¥gonting)
             //var r = ((OkResult) result).Value;
 
         }

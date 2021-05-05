@@ -5,10 +5,12 @@
     <UserSecretsId>2deb311b-82a0-4d10-8f7f-d94457a4cb3c</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <Nullable>annotations</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
+
+    <DocumentationFile>C:\Users\joaki\Source\Repos\spaceparkv2-grupp7\Source\SpacePark2\SpacePark2.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
