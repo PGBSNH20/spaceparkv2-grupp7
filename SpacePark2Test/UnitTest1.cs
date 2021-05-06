@@ -80,38 +80,50 @@ namespace SpacePark2Test
 
         // Spacetraveller
         [Fact]
-        public async void PutSpaceTraveller_ExistingName_ExpectCostReturn()
+        public async void CheckoutSpaceTraveller_ExistingName_ExpectCostReturn()
         {
             var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
             // Test
             var result = await controller.Put("Obi-Wan Kenobi");
 
-            //Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
+            Assert.Equal("Cost of parking 157250, have a nice day!", ((OkObjectResult)result).Value.ToString());
         }
 
         [Fact]
-        public async void PutSpaceTraveller_BadName_ExpectException()
+        public async void CheckoutSpaceTraveller_BadName_ExpectException()
         {
-            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
-
+            var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
             // Test
-            //var result = await controller.Post("Chewie", "SpacePark", "Jedi starfighter");
+            var result = await controller.Put("Chewie");
 
-            //Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
+            Assert.Equal("You are not parked here!", ((BadRequestObjectResult)result).Value.ToString());
         }
 
-        //public async Task<IActionResult> Put([StringLength(16)] string name)
-        //{
-        //    var spaceTraveller = await _travellerRepository.Get(name);
-        //    if (spaceTraveller is null)
-        //        return BadRequest("You are not parked here!");
+        [Fact]
+        public async void GetSpaceTraveller_ExistingName_ExpectCostReturn()
+        {
+            var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
+            // Test
+            var result = await controller.Put("Obi-Wan Kenobi");
 
-        //    var onGoingParking = await _parkingRepository.EndParkingAsync(spaceTraveller);
-        //    if (onGoingParking != null)
-        //        return Ok($"Cost of parking {onGoingParking.Cost}, have a nice day!");
+            Assert.Equal("Cost of parking 157250, have a nice day!", ((OkObjectResult)result).Value.ToString());
+        }
 
-        //    return BadRequest("You don't have an ongoing parking");
-        //}
 
+        /* [HttpGet("{name}/history")]
+
+        public async Task<IActionResult> Get([StringLength(16)] string name)
+        {
+            var traveller = await _travellerRepository.Get(name);
+
+            if (traveller is null)
+                return BadRequest("You don't have any parking history");
+
+            var history = await _parkingRepository.CheckHistoryAsync(traveller);
+            if (history != null)
+                return Ok(history);
+
+            return BadRequest("No history found");
+        }*/
     }
 }

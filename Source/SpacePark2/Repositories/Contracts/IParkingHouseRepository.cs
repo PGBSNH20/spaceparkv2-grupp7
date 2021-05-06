@@ -9,7 +9,7 @@ namespace SpacePark2.Repositories
     public interface IParkingHouseRepository
     {
         Task AddNewParkingHouseAsync(string name, double capacity);
-        Task<List<ParkingHouse>> Get();
+        Task<List<ParkingHouseDTO>> Get();
         Task<ParkingHouse> Get(string name);
     }
 }

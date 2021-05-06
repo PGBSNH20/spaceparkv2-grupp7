@@ -17,10 +17,10 @@ namespace SpacePark2.Repositories
             await Add(parking);
         }
 
-        public async Task<Parking> EndParkingAsync(Models.SpaceTraveller traveller)
+        public async Task<Parking> EndParkingAsync(Models.SpaceTraveller spaceTraveller)
         {
             var onGoingParking = await _context.Parking.Include(s => s.SpaceTraveller)
-                .Where(s => s.SpaceTraveller == traveller)
+                .Where(s => s.SpaceTraveller == spaceTraveller)
                 .Include(s => s.StarShip)
                 .Include(s => s.ParkingHouse)
                 .FirstOrDefaultAsync(x => x.DepartureTime == null);
