@@ -8,7 +8,6 @@ namespace SpacePark2.Repositories
     public class Repository : IRepository
     {
         protected readonly SpaceParkContext _context;
-
         public Repository(SpaceParkContext context)
         {
             _context = context;
@@ -33,12 +32,10 @@ namespace SpacePark2.Repositories
             _context.Update(entity);
             await Save();
         }
-      
 
         public async Task<bool> Save()
         {
             return await _context.SaveChangesAsync() > 0;
         }
-
     }
 }

@@ -9,7 +9,7 @@ namespace SpacePark2.Repositories
     {
         Task<SpaceTraveller> Get(string name);
      
-        SpaceTraveller CreateSpaceTraveller(SpaceTraveller existingTraveller, Service.SpaceTraveller newTraveller);
+        SpaceTraveller ValidateSpaceTraveller(SpaceTraveller existingTraveller, Service.SpaceTraveller newTraveller);
 
     }
 }

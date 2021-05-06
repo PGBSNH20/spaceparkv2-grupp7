@@ -42,28 +42,14 @@ namespace SpacePark2.Repositories
             return parking;
         }
 
-        public async Task<List<Parking>> CheckHistoryAsync(Models.SpaceTraveller traveller)
+        public async Task<List<Parking>> GetHistoryAsync(Models.SpaceTraveller traveller)
         {
-
             return await _context.Parking
                   .Include(x => x.SpaceTraveller)
                   .Include(x => x.StarShip)
                   .Include(x => x.ParkingHouse)
                   .Where(p => p.SpaceTraveller == traveller).ToListAsync();
         }
-
-        public double TimeParked(Parking vehicle)
-        {
-            DateTime start = (DateTime)vehicle.ArrivalTime;
-            DateTime end = DateTime.Now;
-            return (end - start).TotalMinutes;
-        }
-
-        public int CostOfParking(double timeParked)
-        {
-            return (int)(Math.Round(timeParked, 0) * 250);
-        }
-
         public async Task<bool> ParkShipAsync(double shipLength, ParkingHouse parkingHouse)
         {
             bool condition = false;
@@ -76,13 +62,26 @@ namespace SpacePark2.Repositories
             return condition;
         }
 
-        public async Task<bool> CheckIfParkedAsync(Models.SpaceTraveller spaceTraveller)
+        public async Task<bool> IsParkedAsync(Models.SpaceTraveller spaceTraveller)
         {
-            
-            var query = await _context.Parking.Include(x => x.SpaceTraveller).Where(x => x.SpaceTraveller == spaceTraveller).FirstOrDefaultAsync(x => x.DepartureTime == null);
+            var query = await _context.Parking
+                .Include(x => x.SpaceTraveller)
+                .Where(x => x.SpaceTraveller == spaceTraveller)
+                .FirstOrDefaultAsync(x => x.DepartureTime == null);
             if (query != null)
                 return true;
             return false;
+        }
+        public double TimeParked(Parking vehicle)
+        {
+            DateTime start = (DateTime)vehicle.ArrivalTime;
+            DateTime end = DateTime.Now;
+            return (end - start).TotalMinutes;
+        }
+
+        public int CostOfParking(double timeParked)
+        {
+            return (int)(Math.Round(timeParked, 0) * 250);
         }
     }
 }
