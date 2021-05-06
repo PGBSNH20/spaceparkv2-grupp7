@@ -62,7 +62,7 @@ namespace SpacePark2.Controllers
             if (traveller is null)
                 return BadRequest("You don't have any parking history");
 
-            var history = await _parkingRepository.GetHistoryAsync(traveller);
+            var history = await _parkingRepository.CheckHistoryAsync(traveller);
             if (history != null)
                 return Ok(history);
 
