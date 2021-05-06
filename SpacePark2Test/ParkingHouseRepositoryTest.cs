@@ -10,7 +10,7 @@ namespace SpacePark2Test
 {
     class ParkingHouseRepositoryTest : IParkingHouseRepository
     {
-        public async Task Post(string name)
+        public async Task NewParkingHouse(string name, double capacity)
         {
             await Task.Delay(1);
         }

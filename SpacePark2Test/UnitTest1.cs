@@ -73,9 +73,9 @@ namespace SpacePark2Test
             var controller = new ParkingHouseController(parkingHouseRepository);
 
             // Test
-            var result = await controller.Post("Header", "Naboo Galleria");
+            var result = await controller.Post("Header", "Naboo Galleria", 6000);
 
-            Assert.Equal("Parking House created", ((OkObjectResult)result).Value.ToString());
+            Assert.Equal("Naboo Galleria has been added with a capacity of 6000 total meters parking!", ((OkObjectResult)result).Value.ToString());
         }
 
         // Spacetraveller
@@ -99,5 +99,19 @@ namespace SpacePark2Test
 
             //Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
         }
+
+        //public async Task<IActionResult> Put([StringLength(16)] string name)
+        //{
+        //    var spaceTraveller = await _travellerRepository.Get(name);
+        //    if (spaceTraveller is null)
+        //        return BadRequest("You are not parked here!");
+
+        //    var onGoingParking = await _parkingRepository.EndParkingAsync(spaceTraveller);
+        //    if (onGoingParking != null)
+        //        return Ok($"Cost of parking {onGoingParking.Cost}, have a nice day!");
+
+        //    return BadRequest("You don't have an ongoing parking");
+        //}
+
     }
 }

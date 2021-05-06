@@ -33,6 +33,11 @@ namespace SpacePark2Test
             return false;
         }
 
+        public Parking RestoreCapacity(Parking parking)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool CheckIfParked(string name)
         {
             throw new NotImplementedException();
@@ -40,6 +45,8 @@ namespace SpacePark2Test
 
         public async Task<Parking> EndParkingAsync(SpaceTraveller traveller)
         {
+            await Task.Delay(1);
+
             if (traveller.Name == "Obi-Wan Kenobi")
             {
                 var obiPark = new Parking()
