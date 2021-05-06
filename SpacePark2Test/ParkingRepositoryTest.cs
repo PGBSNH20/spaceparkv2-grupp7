@@ -27,7 +27,7 @@ namespace SpacePark2Test
             return condition;
         }
 
-        public async Task<bool> CheckIfParkedAsync(SpaceTraveller spaceTraveller)
+        public async Task<bool> IsParkedAsync(SpaceTraveller spaceTraveller)
         {
             await Task.Delay(1);
             return false;

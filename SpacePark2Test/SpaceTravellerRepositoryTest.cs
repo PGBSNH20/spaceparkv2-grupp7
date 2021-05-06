@@ -33,7 +33,7 @@ namespace SpacePark2Test
             return null;
         }
 
-        public SpaceTraveller CreateSpaceTraveller(SpaceTraveller existingTraveller, Service.SpaceTraveller newTraveller)
+        public SpaceTraveller ValidateSpaceTraveller(SpaceTraveller existingTraveller, Service.SpaceTraveller newTraveller)
         {
             if (existingTraveller != null)
                 return existingTraveller;

@@ -10,9 +10,10 @@ namespace SpacePark2.Repositories
     {
         Task AddParkingAsync(Parking parking);
         Task<Parking> EndParkingAsync(SpaceTraveller spaceTraveller);
-        Task<List<Parking>> CheckHistoryAsync(SpaceTraveller traveller);
+        Task<List<Parking>> GetHistoryAsync(SpaceTraveller traveller);
         Task<bool> ParkShipAsync(double shipLength, ParkingHouse parkingHouse);
-        Task<bool> CheckIfParkedAsync(SpaceTraveller spaceTraveller);
+        Task<bool> IsParkedAsync(SpaceTraveller spaceTraveller);
         Parking RestoreCapacity(Parking parking);
+        Task<List<HistoryDTO>> ArchiveParkingAsync(string name);
     }
 }

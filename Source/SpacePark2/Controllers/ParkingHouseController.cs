@@ -17,21 +17,15 @@ namespace SpacePark2.Controllers
     public class ParkingHouseController : ControllerBase
     {
         private readonly IParkingHouseRepository _parkingHouseRepository;
-        
-
         public ParkingHouseController(IParkingHouseRepository parkingHouseRepository)
         {
             _parkingHouseRepository = parkingHouseRepository;
         }
 
-        //[FromHeader(Name = "AdminApiKey")]
-        //public string UserIdentity { get; set; }
-
         [AdminApiKeyAuth]
         [HttpPost("ParkingHouse")]
         public async Task<IActionResult> Post([FromHeader(Name = "AdminApiKey")][Required] string Header, [Required(ErrorMessage = "Invalid format for parking house")]string name, [Required]double capacity)
         {
-
             await _parkingHouseRepository.AddNewParkingHouseAsync(name, capacity);
             return Ok($"{name} has been added with a capacity of {capacity} total meters parking!");
         }
