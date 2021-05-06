@@ -82,6 +82,7 @@ namespace SpacePark2.Repositories
         public int CostOfParking(double timeParked)
         {
             return (int)(Math.Round(timeParked, 0) * 250);
+        }
         public async Task<List<HistoryDTO>> ArchiveParkingAsync(string name)
         {
             var traveller = await _context.SpaceTraveller.FirstOrDefaultAsync(x => x.Name == name);
