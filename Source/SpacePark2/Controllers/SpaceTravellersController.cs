@@ -35,7 +35,7 @@ namespace SpacePark2.Controllers
         /// <param name="name"></param>
         /// <returns></returns>
         [HttpPut("{name}/checkOut")]
-        public async Task<IActionResult> Put([StringLength(16)]string name)
+        public async Task<IActionResult> Put([StringLength(21)]string name)
         {
             var spaceTraveller = await _travellerRepository.Get(name);
             if (spaceTraveller is null)

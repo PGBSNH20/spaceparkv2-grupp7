@@ -41,7 +41,7 @@ namespace SpacePark2.Controllers
         /// <param name="shipModel">Starship Model</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Post([StringLength(16)] string travellerName, string parkingHouse, string shipModel)
+        public async Task<IActionResult> Post([StringLength(21)] string travellerName, string parkingHouse, string shipModel)
         {
             var selectedParkingHouse = await _parkingHouseRepository.Get(parkingHouse);
             if (selectedParkingHouse is null)
