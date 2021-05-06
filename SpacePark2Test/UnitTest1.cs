@@ -78,6 +78,17 @@ namespace SpacePark2Test
             Assert.Equal("Naboo Galleria has been added with a capacity of 6000 total meters parking!", ((OkObjectResult)result).Value.ToString());
         }
 
+        //[Fact]
+        //public async void GetParkingHouse_AllValuesValid_ExpectAOK()
+        //{
+        //    var controller = new ParkingHouseController(parkingHouseRepository);
+
+        //    // Test
+        //    var result = await controller.Get("Header");
+
+        //    Assert.Equal("NabooGalleria", ((OkObjectResult)result).Value.ToString());
+        //}
+
         // Spacetraveller
         [Fact]
         public async void CheckoutSpaceTraveller_ExistingName_ExpectCostReturn()
@@ -107,6 +118,16 @@ namespace SpacePark2Test
             var result = await controller.Put("Obi-Wan Kenobi");
 
             Assert.Equal("Cost of parking 157250, have a nice day!", ((OkObjectResult)result).Value.ToString());
+        }
+
+        [Fact]
+        public async void GetSpaceTravellersParkingHistory_BadName_ExpectException()
+        {
+            var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
+            // Test
+            var result = await controller.Get("Harry");
+
+            Assert.Equal("You don't have any parking history", ((BadRequestObjectResult)result).Value.ToString());
         }
 
 

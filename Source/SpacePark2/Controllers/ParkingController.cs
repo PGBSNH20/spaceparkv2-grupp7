@@ -41,7 +41,7 @@ namespace SpacePark2.Controllers
         /// <param name="shipModel">Starship Model</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Post([Required(ErrorMessage = "Invalid input")][StringLength(16, ErrorMessage ="Input is too long")] string travellerName, [Required] string parkingHouse, [Required] string shipModel)
+        public async Task<IActionResult> Post([Required(ErrorMessage = "Invalid input")][StringLength(21)] string travellerName, [Required] string parkingHouse, [Required] string shipModel)
         {
             var selectedParkingHouse = await _parkingHouseRepository.Get(parkingHouse);
             if (selectedParkingHouse is null)
@@ -52,7 +52,7 @@ namespace SpacePark2.Controllers
 
             var traveller = await _swApi.GetSpaceTravellerAsync(travellerName);
             if (traveller is null)
-                return NotFound($"{travellerName}");
+                return NotFound($"{travellerName} is not famous and can´t access this spacepark");
 
             var starShips = await _swApi.ChooseStarShipAsync(traveller);
             if (!starShips.Contains(shipModel.ToLower()))

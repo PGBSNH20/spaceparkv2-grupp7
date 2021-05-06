@@ -55,7 +55,7 @@ namespace SpacePark2.Controllers
         /// <returns></returns>
         [HttpGet("{name}/history")]
 
-        public async Task<IActionResult> Get([StringLength(16)] string name)
+        public async Task<IActionResult> Get([StringLength(21)] string name)
         {
             var traveller = await _travellerRepository.Get(name);
 
