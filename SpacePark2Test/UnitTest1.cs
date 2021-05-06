@@ -73,31 +73,57 @@ namespace SpacePark2Test
             var controller = new ParkingHouseController(parkingHouseRepository);
 
             // Test
-            var result = await controller.Post("Header", "Naboo Galleria");
+            var result = await controller.Post("Header", "Naboo Galleria", 6000);
 
-            Assert.Equal("Parking House created", ((OkObjectResult)result).Value.ToString());
+            Assert.Equal("Naboo Galleria has been added with a capacity of 6000 total meters parking!", ((OkObjectResult)result).Value.ToString());
         }
 
         // Spacetraveller
         [Fact]
-        public async void PutSpaceTraveller_ExistingName_ExpectCostReturn()
+        public async void CheckoutSpaceTraveller_ExistingName_ExpectCostReturn()
         {
             var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
             // Test
             var result = await controller.Put("Obi-Wan Kenobi");
 
-            //Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
+            Assert.Equal("Cost of parking 157250, have a nice day!", ((OkObjectResult)result).Value.ToString());
         }
 
         [Fact]
-        public async void PutSpaceTraveller_BadName_ExpectException()
+        public async void CheckoutSpaceTraveller_BadName_ExpectException()
         {
-            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
-
+            var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
             // Test
-            //var result = await controller.Post("Chewie", "SpacePark", "Jedi starfighter");
+            var result = await controller.Put("Chewie");
 
-            //Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
+            Assert.Equal("You are not parked here!", ((BadRequestObjectResult)result).Value.ToString());
         }
+
+        [Fact]
+        public async void GetSpaceTraveller_ExistingName_ExpectCostReturn()
+        {
+            var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
+            // Test
+            var result = await controller.Put("Obi-Wan Kenobi");
+
+            Assert.Equal("Cost of parking 157250, have a nice day!", ((OkObjectResult)result).Value.ToString());
+        }
+
+
+        /* [HttpGet("{name}/history")]
+
+        public async Task<IActionResult> Get([StringLength(16)] string name)
+        {
+            var traveller = await _travellerRepository.Get(name);
+
+            if (traveller is null)
+                return BadRequest("You don't have any parking history");
+
+            var history = await _parkingRepository.CheckHistoryAsync(traveller);
+            if (history != null)
+                return Ok(history);
+
+            return BadRequest("No history found");
+        }*/
     }
 }
