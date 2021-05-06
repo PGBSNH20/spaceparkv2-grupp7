@@ -98,5 +98,32 @@ namespace SpacePark2Test
 
             Assert.Equal("You are not parked here!", ((BadRequestObjectResult)result).Value.ToString());
         }
+
+        [Fact]
+        public async void GetSpaceTraveller_ExistingName_ExpectCostReturn()
+        {
+            var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
+            // Test
+            var result = await controller.Put("Obi-Wan Kenobi");
+
+            Assert.Equal("Cost of parking 157250, have a nice day!", ((OkObjectResult)result).Value.ToString());
+        }
+
+
+        /* [HttpGet("{name}/history")]
+
+        public async Task<IActionResult> Get([StringLength(16)] string name)
+        {
+            var traveller = await _travellerRepository.Get(name);
+
+            if (traveller is null)
+                return BadRequest("You don't have any parking history");
+
+            var history = await _parkingRepository.CheckHistoryAsync(traveller);
+            if (history != null)
+                return Ok(history);
+
+            return BadRequest("No history found");
+        }*/
     }
 }
