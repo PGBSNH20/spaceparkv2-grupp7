@@ -6,11 +6,25 @@
     <members>
         <member name="M:SpacePark2.Controllers.ParkingController.Post(System.String,System.String,System.String)">
             <summary>
-            Creates a parkingspace.
+            Enter your information to park your spaceship
             </summary>
             <param name = "travellerName">Space Traveller</param>
             <param name="parkingHouse">Parking House</param>
             <param name="shipModel">Starship Model</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpacePark2.Controllers.SpaceTravellersController.Put(System.String)">
+            <summary>
+            Unpark your spaceship and pay
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpacePark2.Controllers.SpaceTravellersController.Get(System.String)">
+            <summary>
+            Get information on all previous parkings
+            </summary>
+            <param name="name"></param>
             <returns></returns>
         </member>
     </members>

@@ -38,7 +38,7 @@ namespace SpacePark2.Controllers
         public async Task<IActionResult> Put([StringLength(16)]string name)
         {
             var spaceTraveller = await _travellerRepository.Get(name);
-            if (spaceTraveller == null)
+            if (spaceTraveller is null)
                 return BadRequest("You are not parked here!");
 
             var onGoingParking = await _parkingRepository.EndParkingAsync(spaceTraveller);

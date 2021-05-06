@@ -8,7 +8,7 @@ namespace SpacePark2.Repositories
 {
     public interface IParkingHouseRepository
     {
-        Task Post(string name);
+        Task NewParkingHouse(string name, double capacity);
         Task<List<ParkingHouse>> Get();
         Task<ParkingHouse> Get(string name);
     }

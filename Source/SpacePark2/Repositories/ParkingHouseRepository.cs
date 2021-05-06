@@ -18,12 +18,12 @@ namespace SpacePark2.Repositories
 
         public async Task<ParkingHouse> Get(string name)
         {
-            return await _context.ParkingHouse.FirstOrDefaultAsync(x => x.Name == name);
+            return await _context.ParkingHouse.FirstOrDefaultAsync(x => x.Name.ToLower() == name);
         }
 
-        public async Task Post(string name)
+        public async Task NewParkingHouse(string name, double capacity)
         {
-            await Add(name);
+            await Add(new ParkingHouse { Name = name, Capacity = capacity });
         }
     }
 }

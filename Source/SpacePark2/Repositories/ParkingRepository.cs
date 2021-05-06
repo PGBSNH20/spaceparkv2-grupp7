@@ -21,15 +21,25 @@ namespace SpacePark2.Repositories
         {
             var onGoingParking = await _context.Parking.Include(s => s.SpaceTraveller)
                 .Where(s => s.SpaceTraveller == traveller)
+                .Include(s => s.StarShip)
+                .Include(s => s.ParkingHouse)
                 .FirstOrDefaultAsync(x => x.DepartureTime == null);
+
             if (onGoingParking != null)
             {
                 onGoingParking.DepartureTime = DateTime.Now;
                 onGoingParking.Cost = CostOfParking(TimeParked(onGoingParking));
+                RestoreCapacity(onGoingParking);
                 await Update(onGoingParking);
                 return onGoingParking;
             }
             return null;
+        }
+
+        public Parking RestoreCapacity(Parking parking)
+        {
+            parking.ParkingHouse.Capacity += parking.StarShip.ShipLength;
+            return parking;
         }
 
         public async Task<List<Parking>> CheckHistoryAsync(Models.SpaceTraveller traveller)
