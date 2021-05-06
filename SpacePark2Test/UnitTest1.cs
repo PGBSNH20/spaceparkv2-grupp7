@@ -20,6 +20,8 @@ namespace SpacePark2Test
         IParkingRepository parkingRepository = new ParkingRepositoryTest();
         IParkingHouseRepository parkingHouseRepository = new ParkingHouseRepositoryTest();
 
+
+        // Parking
         [Fact]
         public async void PostParking_AllValuesValid_ExpectAOK()
         {
@@ -64,21 +66,19 @@ namespace SpacePark2Test
             Assert.Equal("There is no room in this parking structure", ((BadRequestObjectResult)result).Value.ToString());
         }
 
-        /* Test jag vill testa // TODO Uppdatera för att kunna testa
-         [HttpPut("checkOut")]
-        public async Task<IActionResult> Put(string name)
+        // Parking House
+        [Fact]
+        public async void PostParkingHouse_AllValuesValid_ExpectAOK()
         {
-            var spaceTraveller = await _travellerRepository.Get(name);
-            if (spaceTraveller == null)
-                return BadRequest("You are not parked here!");
+            var controller = new ParkingHouseController(parkingHouseRepository);
 
-            var onGoingParking = await _parkingRepository.EndParking(spaceTraveller);
-            if (onGoingParking != null)
-                return Ok($"Cost of parking {onGoingParking.Cost}, have a nice day!");
+            // Test
+            var result = await controller.Post("Header", "Naboo Galleria");
 
-            return BadRequest("You don't have an ongoing parking");
-        }*/
+            Assert.Equal("Parking House created", ((OkObjectResult)result).Value.ToString());
+        }
 
+        // Spacetraveller
         [Fact]
         public async void PutSpaceTraveller_ExistingName_ExpectCostReturn()
         {
@@ -99,23 +99,5 @@ namespace SpacePark2Test
 
             //Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
         }
-
-
-
-        /*[HttpGet("{name}/history")]
-
-        public async Task<IActionResult> Get(string name)
-        {
-            var traveller = await _travellerRepository.Get(name);
-
-            if (traveller is null)
-                return BadRequest("You don't have any parking history");
-
-            var history = await _parkingRepository.History(traveller);
-            if (history != null)
-                return Ok(history);
-
-            return BadRequest("No history found");
-        }*/
     }
 }
