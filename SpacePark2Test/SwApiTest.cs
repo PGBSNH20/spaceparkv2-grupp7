@@ -11,13 +11,13 @@ namespace SpacePark2Test
 {
     class SwApiTest : ISwApi
     {
-        private static List<string> starShips = new List<string>()
+        private static List<string> starShips = new()
         {
             "jedi starfighter", "trade federation cruiser", "naboo star skiff", "jedi interceptor",
             "belbullab-22 starfighter"
         };
 
-        private Service.SpaceTraveller ObiWan = new SpaceTraveller()
+        private Service.SpaceTraveller ObiWan = new()
         {
             Name = "Obi-Wan Kenobi",
             StarShips = starShips.ToArray()
