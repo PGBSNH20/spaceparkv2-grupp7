@@ -23,13 +23,13 @@ namespace SpacePark2Test
             StarShips = starShips.ToArray()
         };
 
-        public Task<T> GetStarWarsObject<T>(string path)
+        public Task<T> GetStarWarsObjectAsync<T>(string path)
         {
             // Behöver inte implementeras, används av de andra tre
             throw new NotImplementedException();
         }
 
-        public async Task<SpaceTraveller> GetSpaceTraveller(string name)
+        public async Task<SpaceTraveller> GetSpaceTravellerAsync(string name)
         {
             if (name != "Obi-Wan Kenobi")
                 return null;
@@ -37,7 +37,7 @@ namespace SpacePark2Test
             return ObiWan;
         }
 
-        public async Task<List<string>> ChooseStarShip(SpaceTraveller spaceTraveller)
+        public async Task<List<string>> ChooseStarShipAsync(SpaceTraveller spaceTraveller)
         {
             if (!spaceTraveller.StarShips.Any())
             {
@@ -47,7 +47,7 @@ namespace SpacePark2Test
             return starShips;
         }
 
-        public async Task<double> GetShipLength(string shipName)
+        public async Task<double> GetShipLengthAsync(string shipName)
         {
             switch (shipName.ToLower())
             {

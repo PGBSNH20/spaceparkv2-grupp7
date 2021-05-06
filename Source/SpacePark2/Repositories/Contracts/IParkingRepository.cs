@@ -8,10 +8,10 @@ namespace SpacePark2.Repositories
 {
     public interface IParkingRepository
     {
-        Task AddParking(Parking parking);
-        Task<Parking> EndParking(SpaceTraveller traveller);
-        Task<List<Parking>> History(SpaceTraveller traveller);
-        Task<bool> CheckCapacity(double shipLength, ParkingHouse parkingHouse);
-        Task<bool> CheckIfParked(SpaceTraveller spaceTraveller);
+        Task AddParkingAsync(Parking parking);
+        Task<Parking> EndParkingAsync(SpaceTraveller traveller);
+        Task<List<Parking>> CheckHistoryAsync(SpaceTraveller traveller);
+        Task<bool> ParkShipAsync(double shipLength, ParkingHouse parkingHouse);
+        Task<bool> CheckIfParkedAsync(SpaceTraveller spaceTraveller);
     }
 }

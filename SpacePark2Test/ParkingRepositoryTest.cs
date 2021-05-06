@@ -10,12 +10,12 @@ namespace SpacePark2Test
 {
     class ParkingRepositoryTest : IParkingRepository
     {
-        public async Task AddParking(Parking parking)
+        public async Task AddParkingAsync(Parking parking)
         {
             await Task.Delay(1);
         }
 
-        public async Task<bool> CheckCapacity(double shipLength, ParkingHouse parkingHouse)
+        public async Task<bool> ParkShipAsync(double shipLength, ParkingHouse parkingHouse)
         {
             await Task.Delay(1);
 
@@ -27,7 +27,7 @@ namespace SpacePark2Test
             return condition;
         }
 
-        public async Task<bool> CheckIfParked(SpaceTraveller spaceTraveller)
+        public async Task<bool> CheckIfParkedAsync(SpaceTraveller spaceTraveller)
         {
             await Task.Delay(1);
             return false;
@@ -38,7 +38,7 @@ namespace SpacePark2Test
             throw new NotImplementedException();
         }
 
-        public async Task<Parking> EndParking(SpaceTraveller traveller)
+        public async Task<Parking> EndParkingAsync(SpaceTraveller traveller)
         {
             if (traveller.Name == "Obi-Wan Kenobi")
             {
@@ -58,7 +58,7 @@ namespace SpacePark2Test
             return null;
         }
 
-        public Task<List<Parking>> History(SpaceTraveller traveller)
+        public Task<List<Parking>> CheckHistoryAsync(SpaceTraveller traveller)
         {
             throw new NotImplementedException();
         }
