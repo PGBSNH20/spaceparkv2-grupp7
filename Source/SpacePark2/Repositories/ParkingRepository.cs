@@ -16,6 +16,7 @@ namespace SpacePark2.Repositories
         {
             await Add(parking);
         }
+
         public async Task<Parking> EndParking(Models.SpaceTraveller traveller)
         {
             var onGoingParking = await _context.Parking.Include(s => s.SpaceTraveller)
@@ -30,6 +31,7 @@ namespace SpacePark2.Repositories
             }
             return null;
         }
+
         public async Task<List<Parking>> History(Models.SpaceTraveller traveller)
         {
 
@@ -39,16 +41,19 @@ namespace SpacePark2.Repositories
                   .Include(x => x.ParkingHouse)
                   .Where(p => p.SpaceTraveller == traveller).ToListAsync();
         }
+
         public double TimeParked(Parking vehicle)
         {
             DateTime start = (DateTime)vehicle.ArrivalTime;
             DateTime end = DateTime.Now;
             return (end - start).TotalMinutes;
         }
+
         public int CostOfParking(double timeParked)
         {
             return (int)(Math.Round(timeParked, 0) * 250);
         }
+
         public async Task<bool> CheckCapacity(double shipLength, ParkingHouse parkingHouse)
         {
             bool condition = false;
@@ -60,6 +65,7 @@ namespace SpacePark2.Repositories
             }
             return condition;
         }
+
         public async Task<bool> CheckIfParked(Models.SpaceTraveller spaceTraveller)
         {
             

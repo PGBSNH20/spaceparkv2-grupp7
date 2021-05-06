@@ -39,18 +39,13 @@ namespace SpacePark2.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(string travellerName, string parkingHouse, string shipModel)
         {
-            var traveller = await _swApi.GetSpaceTraveller(travellerName);
-            if (traveller == null)
-                return BadRequest("You have entered an invalid input");
-
-            //TODO metod som validerar parkinghouse och nekar om de ej finns
-            // kollar om det
             var selectedParkingHouse = await _parkingHouseRepository.Get(parkingHouse);
-            //if (selectedParkingHouse.Name.ToLower() != parkingHouse.ToLower())
-            //    return BadRequest("This Parking house does not exist");
-
             if (selectedParkingHouse is null)
                 return BadRequest("This Parking house does not exist");
+
+            var traveller = await _swApi.GetSpaceTraveller(travellerName);
+            if (traveller is null)
+                return BadRequest("You have entered an invalid input");
 
             var starShips = await _swApi.ChooseStarShip(traveller);
             if (!starShips.Contains(shipModel.ToLower()))

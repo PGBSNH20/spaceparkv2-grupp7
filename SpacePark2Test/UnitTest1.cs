@@ -21,7 +21,7 @@ namespace SpacePark2Test
         IParkingHouseRepository parkingHouseRepository = new ParkingHouseRepositoryTest();
 
         [Fact]
-        public async void PostParking_AllValuesValid_ExpectAOK() // TODO gör om för att anpassa till nya metoden
+        public async void PostParking_AllValuesValid_ExpectAOK()
         {
             var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
 
@@ -79,26 +79,26 @@ namespace SpacePark2Test
             return BadRequest("You don't have an ongoing parking");
         }*/
 
-        //[Fact]
-        //public async void PutSpaceTraveller_ExistingName_ExpectCostReturn()
-        //{
-        //    var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
-        //    // Test
-        //    var result = await controller.Put("Obi-Wan Kenobi");
+        [Fact]
+        public async void PutSpaceTraveller_ExistingName_ExpectCostReturn()
+        {
+            var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
+            // Test
+            var result = await controller.Put("Obi-Wan Kenobi");
 
-        //    //Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
-        //}
+            //Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
+        }
 
-        //[Fact]
-        //public async void PutSpaceTraveller_BadName_ExpectException()
-        //{
-        //    var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
+        [Fact]
+        public async void PutSpaceTraveller_BadName_ExpectException()
+        {
+            var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
 
-        //    // Test
-        //    //var result = await controller.Post("Chewie", "SpacePark", "Jedi starfighter");
+            // Test
+            //var result = await controller.Post("Chewie", "SpacePark", "Jedi starfighter");
 
-        //    //Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
-        //}
+            //Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
+        }
 
 
 

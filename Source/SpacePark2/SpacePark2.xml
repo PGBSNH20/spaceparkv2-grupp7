@@ -8,9 +8,9 @@
             <summary>
             Creates a parkingspace.
             </summary>
-            <param name="name"></param>
-            <param name="parkingHouse"></param>
-            <param name="shipModel"></param>
+            <param name = "travellerName">Space Traveller</param>
+            <param name="parkingHouse">Parking House</param>
+            <param name="shipModel">Starship Model</param>
             <returns></returns>
         </member>
     </members>
