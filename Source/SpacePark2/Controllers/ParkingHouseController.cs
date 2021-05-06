@@ -31,7 +31,8 @@ namespace SpacePark2.Controllers
         [HttpPost("ParkingHouse")]
         public async Task<IActionResult> Post([FromHeader(Name = "AdminApiKey")][Required] string Header, [Required(ErrorMessage = "Invalid format for parking house")]string name, [Required]double capacity)
         {
-            await _parkingHouseRepository.NewParkingHouse(name, capacity);
+
+            await _parkingHouseRepository.AddNewParkingHouseAsync(name, capacity);
             return Ok($"{name} has been added with a capacity of {capacity} total meters parking!");
         }
 
