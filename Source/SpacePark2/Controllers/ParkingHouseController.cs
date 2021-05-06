@@ -11,11 +11,15 @@ using System.Threading.Tasks;
 
 namespace SpacePark2.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class ParkingHouseController : ControllerBase
     {
         private readonly IParkingHouseRepository _parkingHouseRepository;
+        
+        [FromHeader(Name = "ApiKey")]
+        public string Key { get; set; }
 
         public ParkingHouseController(IParkingHouseRepository parkingHouseRepository)
         {
@@ -36,8 +40,9 @@ namespace SpacePark2.Controllers
             return Ok();
         }
 
+        [ApiKeyAuth]
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromHeader(Name = "ApiKey")][Required] string Header)
         {
             return Ok(await _parkingHouseRepository.Get());
         }
