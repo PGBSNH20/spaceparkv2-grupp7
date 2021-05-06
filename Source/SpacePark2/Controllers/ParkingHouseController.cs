@@ -30,7 +30,7 @@ namespace SpacePark2.Controllers
         public async Task<IActionResult> Post([FromHeader(Name = "AdminApiKey")][Required] string Header, string name)
         {
             if (name == null)
-                return BadRequest("Hejsan");
+                return BadRequest("You didn't enter a name for your new parking structure...");
 
             await _parkingHouseRepository.Post(name);
             return Ok();
