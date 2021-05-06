@@ -82,6 +82,30 @@ namespace SpacePark2.Repositories
         public int CostOfParking(double timeParked)
         {
             return (int)(Math.Round(timeParked, 0) * 250);
+        public async Task<List<HistoryDTO>> ArchiveParkingAsync(string name)
+        {
+            var traveller = await _context.SpaceTraveller.FirstOrDefaultAsync(x => x.Name == name);
+
+            var parkingList = await _context.Parking
+                .Include(x => x.StarShip)
+                .Include(x => x.ParkingHouse)
+                .Where(x => x.SpaceTraveller.Name == traveller.Name)
+                .ToListAsync();
+
+            var historyList = new List<HistoryDTO>();
+            foreach (var r in parkingList)
+            {
+                historyList.Add(new HistoryDTO()
+                {
+                    Name = traveller.Name,
+                    StarShipModel = r.StarShip.StarShipModel,
+                    ParkingHouse = r.ParkingHouse.Name,
+                    Cost = r.Cost,
+                    ArrivalTime = r.ArrivalTime,
+                    DepartureTime = (DateTime)r.DepartureTime
+                });
+            }
+            return historyList;
         }
     }
 }

@@ -14,5 +14,6 @@ namespace SpacePark2.Repositories
         Task<bool> ParkShipAsync(double shipLength, ParkingHouse parkingHouse);
         Task<bool> IsParkedAsync(SpaceTraveller spaceTraveller);
         Parking RestoreCapacity(Parking parking);
+        Task<List<HistoryDTO>> ArchiveParkingAsync(string name);
     }
 }
