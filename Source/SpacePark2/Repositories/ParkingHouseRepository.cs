@@ -13,7 +13,7 @@ namespace SpacePark2.Repositories
 
         public async Task<List<ParkingHouse>> Get()
         {
-          return  await _context.ParkingHouse.ToListAsync();
+            return await _context.ParkingHouse.ToListAsync();
         }
 
         public async Task<ParkingHouse> Get(string name)
@@ -21,7 +21,7 @@ namespace SpacePark2.Repositories
             return await _context.ParkingHouse.FirstOrDefaultAsync(x => x.Name.ToLower() == name);
         }
 
-        public async Task NewParkingHouse(string name, double capacity)
+        public async Task AddNewParkingHouseAsync(string name, double capacity)
         {
             await Add(new ParkingHouse { Name = name, Capacity = capacity });
         }
