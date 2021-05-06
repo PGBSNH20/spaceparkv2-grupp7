@@ -11,9 +11,15 @@ namespace SpacePark2.Repositories
     {
         public ParkingHouseRepository(SpaceParkContext context) : base(context) { }
 
-        public async Task<List<ParkingHouse>> Get()
+        public async Task<List<ParkingHouseDTO>> Get()
         {
-            return await _context.ParkingHouse.ToListAsync();
+            var searchResultList = await _context.ParkingHouse.ToListAsync();
+            var resultList = new List<ParkingHouseDTO>();
+            foreach (var s in searchResultList)
+            {
+               resultList.Add(new ParkingHouseDTO(){ Name = s.Name, Capacity = s.Capacity });
+            }
+            return resultList;
         }
 
         public async Task<ParkingHouse> Get(string name)
