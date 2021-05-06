@@ -43,22 +43,21 @@ namespace SpacePark2Test
             throw new NotImplementedException();
         }
 
-        public async Task<Parking> EndParkingAsync(SpaceTraveller traveller)
+        public async Task<Parking> EndParkingAsync(SpaceTraveller spaceTraveller)
         {
             await Task.Delay(1);
 
-            if (traveller.Name == "Obi-Wan Kenobi")
+            if (spaceTraveller.Name == "Obi-Wan Kenobi")
             {
                 var obiPark = new Parking()
                 {
-                    SpaceTraveller = traveller,
+                    SpaceTraveller = spaceTraveller,
                     ArrivalTime = Convert.ToDateTime("2021 - 05 - 05 14:43"),
                     DepartureTime = Convert.ToDateTime("2021 - 05 - 06 01:12")
                 };
-                DateTime start = (DateTime) obiPark.DepartureTime;
-                DateTime end = obiPark.ArrivalTime;
+                DateTime start = obiPark.ArrivalTime;
+                DateTime end = (DateTime) obiPark.DepartureTime;
                 obiPark.Cost = (int)(Math.Round(((end - start).TotalMinutes),0) * 250);
-
                 return obiPark;
             }
 
