@@ -33,7 +33,7 @@ namespace SpacePark2.Controllers
                 return BadRequest("Hejsan");
 
             await _parkingHouseRepository.Post(name);
-            return Ok();
+            return Ok("Parking House created");
         }
 
         [HttpGet]
