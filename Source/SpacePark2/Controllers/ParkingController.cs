@@ -47,20 +47,20 @@ namespace SpacePark2.Controllers
             if (selectedParkingHouse is null)
                 return BadRequest("This Parking house does not exist");
 
-            var traveller = await _swApi.GetSpaceTraveller(travellerName);
+            var traveller = await _swApi.GetSpaceTravellerAsync(travellerName);
             if (traveller is null)
                 return BadRequest("You have entered an invalid input");
 
-            var starShips = await _swApi.ChooseStarShip(traveller);
+            var starShips = await _swApi.ChooseStarShipAsync(traveller);
             if (!starShips.Contains(shipModel.ToLower()))
                 return BadRequest("You don't own this Starship");
 
-            var shipLength = await _swApi.GetShipLength(shipModel);
+            var shipLength = await _swApi.GetShipLengthAsync(shipModel);
 
-            if (await _parkingRepository.CheckIfParked(await _travellerRepository.Get(travellerName)))
+            if (await _parkingRepository.CheckIfParkedAsync(await _travellerRepository.Get(travellerName)))
                 return BadRequest("You're already parked, go find your spaceship!");
 
-            if(!_parkingRepository.CheckCapacity(shipLength, selectedParkingHouse).Result)
+            if(!_parkingRepository.ParkShipAsync(shipLength, selectedParkingHouse).Result)
                 return BadRequest("There is no room in this parking structure");
             
             var parking = new Parking
@@ -70,7 +70,7 @@ namespace SpacePark2.Controllers
                 StarShip = new StarShip { ShipLength = shipLength, StarShipModel = shipModel },
             };
 
-            await _parkingRepository.AddParking(parking);
+            await _parkingRepository.AddParkingAsync(parking);
             return Ok("You're parked!");
         }
     }

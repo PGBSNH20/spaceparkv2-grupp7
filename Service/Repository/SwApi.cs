@@ -18,7 +18,7 @@ namespace Service.Repository
         readonly HttpClient Client = new();
         // TODO Kolla så allt har ToLower
 
-        public async Task<T> GetStarWarsObject<T>(string path)
+        public async Task<T> GetStarWarsObjectAsync<T>(string path)
         {
             string baseUrl = $"{path}";
             T result = default;
@@ -48,13 +48,13 @@ namespace Service.Repository
             return result;
         }
 
-        public async Task<SpaceTraveller> GetSpaceTraveller(string name)
+        public async Task<SpaceTraveller> GetSpaceTravellerAsync(string name)
         {
 
             if (name != null)
             {
                 NamePath = $"https://swapi.dev/api/people/?search={name}";
-                var search = await GetStarWarsObject<SearchResultTraveller>(NamePath);
+                var search = await GetStarWarsObjectAsync<SearchResultTraveller>(NamePath);
 
                 if (search.count > 0 && search.results[0].Name.ToLower() == name.ToLower())
                     return search.results[0];
@@ -63,7 +63,7 @@ namespace Service.Repository
             return null;
         }
 
-        public async Task<List<string>> ChooseStarShip(SpaceTraveller spaceTraveller)
+        public async Task<List<string>> ChooseStarShipAsync(SpaceTraveller spaceTraveller)
         {
             List<string> starShips = new();
             if (!spaceTraveller.StarShips.Any())
@@ -73,18 +73,18 @@ namespace Service.Repository
 
             foreach (var starShip in spaceTraveller.StarShips)
             {
-                var search = await GetStarWarsObject<Starship>(starShip);
+                var search = await GetStarWarsObjectAsync<Starship>(starShip);
                 starShips.Add(search.Name.ToLower());
             }
 
             return starShips;
         }
 
-        public async Task<double> GetShipLength(string shipName)
+        public async Task<double> GetShipLengthAsync(string shipName)
         {
             ShipPath = $"https://swapi.dev/api/starships/?search={shipName}";
 
-            var starShip = await GetStarWarsObject<SearchResultStarShip>(ShipPath);
+            var starShip = await GetStarWarsObjectAsync<SearchResultStarShip>(ShipPath);
 
             return double.Parse(starShip.results[0].length.Replace('.', ','));
         }

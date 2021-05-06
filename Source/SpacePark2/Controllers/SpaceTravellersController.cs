@@ -41,7 +41,7 @@ namespace SpacePark2.Controllers
             if (spaceTraveller == null)
                 return BadRequest("You are not parked here!");
 
-            var onGoingParking = await _parkingRepository.EndParking(spaceTraveller);
+            var onGoingParking = await _parkingRepository.EndParkingAsync(spaceTraveller);
             if (onGoingParking != null)
                 return Ok($"Cost of parking {onGoingParking.Cost}, have a nice day!");
 
@@ -62,7 +62,7 @@ namespace SpacePark2.Controllers
             if (traveller is null)
                 return BadRequest("You don't have any parking history");
 
-            var history = await _parkingRepository.History(traveller);
+            var history = await _parkingRepository.CheckHistoryAsync(traveller);
             if (history != null)
                 return Ok(history);
 

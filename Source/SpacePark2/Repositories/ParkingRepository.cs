@@ -12,12 +12,12 @@ namespace SpacePark2.Repositories
     {
         public ParkingRepository(SpaceParkContext context) : base(context) { }
       
-        public async Task AddParking(Parking parking)
+        public async Task AddParkingAsync(Parking parking)
         {
             await Add(parking);
         }
 
-        public async Task<Parking> EndParking(Models.SpaceTraveller traveller)
+        public async Task<Parking> EndParkingAsync(Models.SpaceTraveller traveller)
         {
             var onGoingParking = await _context.Parking.Include(s => s.SpaceTraveller)
                 .Where(s => s.SpaceTraveller == traveller)
@@ -32,7 +32,7 @@ namespace SpacePark2.Repositories
             return null;
         }
 
-        public async Task<List<Parking>> History(Models.SpaceTraveller traveller)
+        public async Task<List<Parking>> CheckHistoryAsync(Models.SpaceTraveller traveller)
         {
 
             return await _context.Parking
@@ -54,7 +54,7 @@ namespace SpacePark2.Repositories
             return (int)(Math.Round(timeParked, 0) * 250);
         }
 
-        public async Task<bool> CheckCapacity(double shipLength, ParkingHouse parkingHouse)
+        public async Task<bool> ParkShipAsync(double shipLength, ParkingHouse parkingHouse)
         {
             bool condition = false;
             if ((parkingHouse.Capacity - shipLength) > 0)
@@ -66,7 +66,7 @@ namespace SpacePark2.Repositories
             return condition;
         }
 
-        public async Task<bool> CheckIfParked(Models.SpaceTraveller spaceTraveller)
+        public async Task<bool> CheckIfParkedAsync(Models.SpaceTraveller spaceTraveller)
         {
             
             var query = await _context.Parking.Include(x => x.SpaceTraveller).Where(x => x.SpaceTraveller == spaceTraveller).FirstOrDefaultAsync(x => x.DepartureTime == null);
