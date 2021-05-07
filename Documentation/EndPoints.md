@@ -23,6 +23,7 @@
 
 
 **GET Parkinghouse**
+
 /api/ParkingHouse
 ![Screenshot GetParkingHouse API](getparkinghouse.png)
 
