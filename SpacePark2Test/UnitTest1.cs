@@ -30,18 +30,18 @@ namespace SpacePark2Test
             // Test
             var result = await controller.Post("Obi-Wan Kenobi", "NabooGalleria", "Jedi starfighter");
 
-            Assert.Equal("You're parked!", ((OkObjectResult)result).Value.ToString());
+            Assert.Equal($"You parked your car at {DateTime.Now}!", ((OkObjectResult)result).Value.ToString());
         }
 
         [Fact]
-        public async void PostParking_BadName_ExpectBadRequest()
+        public async void PostParking_Wrong_Traveller_Name_ExpectBadRequest()
         {
             var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
 
             // Test
             var result = await controller.Post("Chewie", "NabooGalleria", "Jedi starfighter");
 
-            Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
+            Assert.Equal("Chewie is not famous and can´t access this spacepark", ((NotFoundObjectResult)result).Value.ToString());
         }
 
         [Fact]
