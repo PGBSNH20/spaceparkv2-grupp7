@@ -21,15 +21,26 @@ namespace SpacePark2.Controllers
         {
             _parkingHouseRepository = parkingHouseRepository;
         }
-
+        /// <summary>
+        /// Add parkinghouse
+        /// </summary>
+        /// <param name="Header"></param>
+        /// <param name="name"></param>
+        /// <param name="capacity"></param>
+        /// <returns></returns>
         [AdminApiKeyAuth]
         [HttpPost("ParkingHouse")]
-        public async Task<IActionResult> Post([FromHeader(Name = "AdminApiKey")][Required] string Header, [Required(ErrorMessage = "Invalid format for parking house")][MinLength(2)]string name, [Required][Range(500,500000)]double capacity)
+        public async Task<IActionResult> Post([Required(ErrorMessage = "Invalid format for parking house")][MinLength(2)]string name, [Required][Range(500,500000)]double capacity, [FromHeader(Name = "AdminApiKey")][Required] string Header)
         {
             await _parkingHouseRepository.AddNewParkingHouseAsync(name, capacity);
             return Ok($"{name} has been added with a capacity of {capacity} total meters parking!");
         }
 
+        /// <summary>
+        /// Get information on all parkinghouses
+        /// </summary>
+        /// <param name="Header"></param>
+        /// <returns></returns>
         [ApiKeyAuth]
         [HttpGet]
         public async Task<IActionResult> Get([FromHeader(Name = "ApiKey")][Required] string Header)

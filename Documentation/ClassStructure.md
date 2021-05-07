@@ -44,4 +44,19 @@ SpacePark2
 		- ParkingHouseRepository.cs: Innehåller metoder kopplade till ParkingHouse requests.
 		- ParkingRepository.cs: Innehåller de metoder som kopplas till ParkingControllern.
 		- Repository.cs: Håller metoder som används överallt i programmet, 
+		- SpacetravellerRepository.cs: SpaceTraveller metoder
+	- appsettings.json: .gitignorad för att inte ladda upp lösenord till publika github repot
+	- Dockerfile:
+	- Program.cs: Skapar en default hostbuilder 
+	- SpacePark2.xml: Xml fil för xml comments i request metoderna
+	- Startup.cs: Kopplar på våra repon och interfaces, xml fil och definerar programmets struktur
+
+SpacePark2Test: Projekt för testing med Xunit, innehåller testklasser med stub för våra repon.
+
+	- Obi-WanKenobi.txt: Spacetraveller objekt för testing
+	- ParkingHouseRepositoryTest.cs
+	- ParkingRepositoryTest.cs
+	- SpaceTravellerRepositoryTest.cs
+	- SwApiTest.cs: Testar våra metoder för att prata med APIet via en mockad SpaceTraveller (Obi-WanKenobi.txt)
+	- UnitTest1.cs: Håller tester för metoder relaterade till requests
 	

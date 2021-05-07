@@ -30,18 +30,18 @@ namespace SpacePark2Test
             // Test
             var result = await controller.Post("Obi-Wan Kenobi", "NabooGalleria", "Jedi starfighter");
 
-            Assert.Equal("You're parked!", ((OkObjectResult)result).Value.ToString());
+            Assert.Equal($"You parked your car at {DateTime.Now}!", ((OkObjectResult)result).Value.ToString());
         }
 
         [Fact]
-        public async void PostParking_BadName_ExpectBadRequest()
+        public async void PostParking_Wrong_Traveller_Name_ExpectBadRequest()
         {
             var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
 
             // Test
             var result = await controller.Post("Chewie", "NabooGalleria", "Jedi starfighter");
 
-            Assert.Equal("You have entered an invalid input", ((BadRequestObjectResult)result).Value.ToString());
+            Assert.Equal("Chewie is not famous and can´t access this spacepark", ((NotFoundObjectResult)result).Value.ToString());
         }
 
         [Fact]
@@ -121,7 +121,7 @@ namespace SpacePark2Test
         }
 
         [Fact]
-        public async void GetSpaceTravellersParkingHistory_BadName_ExpectException()
+        public async void GetSpaceTravellersParkingHistory_Wrong_Traveller_Name_ExpectException()
         {
             var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
             // Test
@@ -130,21 +130,30 @@ namespace SpacePark2Test
             Assert.Equal("You don't have any parking history", ((BadRequestObjectResult)result).Value.ToString());
         }
 
-
-        /* [HttpGet("{name}/history")]
-
-        public async Task<IActionResult> Get([StringLength(16)] string name)
+        [Fact]
+        public async void GetSpaceTravellersParkingHistory_Existing_Traveller_Name_Expect_NotNull()
         {
-            var traveller = await _travellerRepository.Get(name);
+            var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
+            var result = await controller.Get("Obi-Wan Kenobi");
+            Assert.NotNull((OkObjectResult)result);
 
-            if (traveller is null)
-                return BadRequest("You don't have any parking history");
+        }
 
-            var history = await _parkingRepository.CheckHistoryAsync(traveller);
-            if (history != null)
-                return Ok(history);
 
-            return BadRequest("No history found");
-        }*/
-    }
+            //[HttpGet("{name}/history")]
+
+            //public async Task<IActionResult> Get([StringLength(16)] string name)
+            //{
+            //    var traveller = await _travellerRepository.Get(name);
+
+            //    if (traveller is null)
+            //        return BadRequest("You don't have any parking history");
+
+            //    var history = await _parkingRepository.CheckHistoryAsync(traveller);
+            //    if (history != null)
+            //        return Ok(history);
+
+            //    return BadRequest("No history found");
+            //}
+        }
 }
