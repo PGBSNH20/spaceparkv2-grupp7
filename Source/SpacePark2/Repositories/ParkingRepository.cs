@@ -11,7 +11,7 @@ namespace SpacePark2.Repositories
     public class ParkingRepository : Repository, IParkingRepository
     {
         public ParkingRepository(SpaceParkContext context) : base(context) { }
-      
+
         public async Task AddParkingAsync(Parking parking)
         {
             await Add(parking);
@@ -40,15 +40,6 @@ namespace SpacePark2.Repositories
         {
             parking.ParkingHouse.Capacity += parking.StarShip.ShipLength;
             return parking;
-        }
-
-        public async Task<List<Parking>> GetHistoryAsync(Models.SpaceTraveller traveller)
-        {
-            return await _context.Parking
-                  .Include(x => x.SpaceTraveller)
-                  .Include(x => x.StarShip)
-                  .Include(x => x.ParkingHouse)
-                  .Where(p => p.SpaceTraveller == traveller).ToListAsync();
         }
         public async Task<bool> ParkShipAsync(double shipLength, ParkingHouse parkingHouse)
         {
@@ -83,28 +74,29 @@ namespace SpacePark2.Repositories
         {
             return (int)(Math.Round(timeParked, 0) * 250);
         }
-        public async Task<List<HistoryDTO>> ArchiveParkingAsync(string name)
+        public async Task<List<HistoryDTO>> ParkingHistoryAsync(Models.SpaceTraveller spaceTraveller)
         {
-            var traveller = await _context.SpaceTraveller.FirstOrDefaultAsync(x => x.Name == name);
 
             var parkingList = await _context.Parking
                 .Include(x => x.StarShip)
                 .Include(x => x.ParkingHouse)
-                .Where(x => x.SpaceTraveller.Name == traveller.Name)
+                .Where(x => x.SpaceTraveller.Name == spaceTraveller.Name)
                 .ToListAsync();
 
             var historyList = new List<HistoryDTO>();
+
             foreach (var r in parkingList)
             {
-                historyList.Add(new HistoryDTO()
-                {
-                    Name = traveller.Name,
-                    StarShipModel = r.StarShip.StarShipModel,
-                    ParkingHouse = r.ParkingHouse.Name,
-                    Cost = r.Cost,
-                    ArrivalTime = r.ArrivalTime,
-                    DepartureTime = (DateTime)r.DepartureTime
-                });
+                if (r.DepartureTime != null)
+                    historyList.Add(new HistoryDTO()
+                    {
+                        Name = spaceTraveller.Name,
+                        StarShipModel = r.StarShip.StarShipModel,
+                        ParkingHouse = r.ParkingHouse.Name,
+                        Cost = r.Cost,
+                        ArrivalTime = r.ArrivalTime,
+                        DepartureTime = (DateTime)r.DepartureTime
+                    });
             }
             return historyList;
         }

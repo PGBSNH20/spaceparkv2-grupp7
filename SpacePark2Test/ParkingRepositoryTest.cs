@@ -64,17 +64,7 @@ namespace SpacePark2Test
             return null;
         }
 
-        public Task<List<Parking>> CheckHistoryAsync(SpaceTraveller traveller)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Parking>> GetHistoryAsync(SpaceTraveller traveller)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<List<HistoryDTO>> ArchiveParkingAsync(string name)
+        public async Task<List<HistoryDTO>> ParkingHistoryAsync(string name)
         {
             await Task.Delay(1);
             if (name == "Obi-Wan Kenobi")
