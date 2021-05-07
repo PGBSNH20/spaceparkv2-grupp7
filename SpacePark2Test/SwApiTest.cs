@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.Forms;
 using Service;
 using Service.Repository.Contracts;
 
@@ -25,7 +23,6 @@ namespace SpacePark2Test
 
         public Task<T> GetStarWarsObjectAsync<T>(string path)
         {
-            // Behöver inte implementeras, används av de andra tre
             throw new NotImplementedException();
         }
 
@@ -62,7 +59,7 @@ namespace SpacePark2Test
                 case "belbullab-22 starfighter":
                     return 6.71;
                 default:
-                    return default; //TODO detta är INTE rätt
+                    return default;
             }
         }
     }

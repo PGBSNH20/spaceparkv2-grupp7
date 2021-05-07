@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using SpacePark2.Models;
 using SpacePark2.Repositories;
@@ -14,7 +12,6 @@ namespace SpacePark2Test
         {
             await Task.Delay(1);
         }
-
 
         public async Task<ParkingHouse> Get(string name)
         {
@@ -31,7 +28,6 @@ namespace SpacePark2Test
             }
             return null;
         }
-
 
         Task<List<ParkingHouseDTO>> IParkingHouseRepository.Get()
         {

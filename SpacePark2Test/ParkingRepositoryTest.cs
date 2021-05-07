@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using SpacePark2.Models;
 using SpacePark2.Repositories;
@@ -38,11 +36,6 @@ namespace SpacePark2Test
             throw new NotImplementedException();
         }
 
-        public bool CheckIfParked(string name)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Parking> EndParkingAsync(SpaceTraveller spaceTraveller)
         {
             await Task.Delay(1);
@@ -64,10 +57,10 @@ namespace SpacePark2Test
             return null;
         }
 
-        public async Task<List<HistoryDTO>> ParkingHistoryAsync(string name)
+        public async Task<List<HistoryDTO>> ParkingHistoryAsync(SpaceTraveller spaceTraveller)
         {
             await Task.Delay(1);
-            if (name == "Obi-Wan Kenobi")
+            if (spaceTraveller.Name == "Obi-Wan Kenobi")
             {
 
                 var history = new List<HistoryDTO>();
@@ -103,7 +96,6 @@ namespace SpacePark2Test
             }
 
             return null;
-
         }
     }
 }

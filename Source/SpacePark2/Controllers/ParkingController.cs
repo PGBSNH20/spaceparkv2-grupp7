@@ -52,7 +52,7 @@ namespace SpacePark2.Controllers
 
             var traveller = await _swApi.GetSpaceTravellerAsync(travellerName);
             if (traveller is null)
-                return NotFound($"{travellerName} is not famous and can´t access this spark");
+                return NotFound($"{travellerName} is not famous and can´t access this spacepark");
 
             var starShips = await _swApi.ChooseStarShipAsync(traveller);
             if (!starShips.Contains(shipModel.ToLower()))

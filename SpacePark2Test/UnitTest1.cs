@@ -1,13 +1,9 @@
 using System;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Service;
 using Service.Repository.Contracts;
 using Xunit;
-using SpacePark2;
 using SpacePark2.Controllers;
 using SpacePark2.Repositories;
-using Xunit.Sdk;
 
 namespace SpacePark2Test
 {
@@ -28,18 +24,18 @@ namespace SpacePark2Test
             var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
 
             // Test
-            var result = await controller.Post("Obi-Wan Kenobi", "NabooGalleria", "Jedi starfighter");
+            var result = await controller.Post( "NabooGalleria", "Obi-Wan Kenobi", "Jedi starfighter");
 
             Assert.Equal($"You parked your car at {DateTime.Now}!", ((OkObjectResult)result).Value.ToString());
         }
 
         [Fact]
-        public async void PostParking_Wrong_Traveller_Name_ExpectBadRequest()
+        public async void PostParking_WrongTravellerName_ExpectBadRequest()
         {
             var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
 
             // Test
-            var result = await controller.Post("Chewie", "NabooGalleria", "Jedi starfighter");
+            var result = await controller.Post( "NabooGalleria", "Chewie", "Jedi starfighter");
 
             Assert.Equal("Chewie is not famous and can´t access this spacepark", ((NotFoundObjectResult)result).Value.ToString());
         }
@@ -61,14 +57,14 @@ namespace SpacePark2Test
             var controller = new ParkingController(spaceTravellerRepository, parkingRepository, parkingHouseRepository, swApi);
 
             // Test
-            var result = await controller.Post("Obi-Wan Kenobi", "NabooGalleria", "Trade Federation cruiser");
+            var result = await controller.Post( "NabooGalleria", "Obi-Wan Kenobi", "Trade Federation cruiser");
 
             Assert.Equal("There is no room in this parking structure", ((BadRequestObjectResult)result).Value.ToString());
         }
 
         // Parking House
         [Fact]
-        public async void PostParkingHouse_AllValuesValid_ExpectAOK()
+        public async void PostParkingHouse_AllValuesValid_ExpectOK()
         {
             var controller = new ParkingHouseController(parkingHouseRepository);
 
@@ -77,17 +73,6 @@ namespace SpacePark2Test
 
             Assert.Equal("Naboo Galleria has been added with a capacity of 6000 total meters parking!", ((OkObjectResult)result).Value.ToString());
         }
-
-        //[Fact]
-        //public async void GetParkingHouse_AllValuesValid_ExpectAOK()
-        //{
-        //    var controller = new ParkingHouseController(parkingHouseRepository);
-
-        //    // Test
-        //    var result = await controller.Get("Header");
-
-        //    Assert.Equal("NabooGalleria", ((OkObjectResult)result).Value.ToString());
-        //}
 
         // Spacetraveller
         [Fact]
@@ -121,17 +106,7 @@ namespace SpacePark2Test
         }
 
         [Fact]
-        public async void GetSpaceTravellersParkingHistory_Wrong_Traveller_Name_ExpectException()
-        {
-            var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
-            // Test
-            var result = await controller.Get("Harry");
-
-            Assert.Equal("You don't have any parking history", ((BadRequestObjectResult)result).Value.ToString());
-        }
-
-        [Fact]
-        public async void GetSpaceTravellersParkingHistory_Existing_Traveller_Name_Expect_NotNull()
+        public async void GetSpaceTravellersParkingHistory_ExistingTravellerName_Expect_NotNull()
         {
             var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
             var result = await controller.Get("Obi-Wan Kenobi");
@@ -139,21 +114,14 @@ namespace SpacePark2Test
 
         }
 
+        [Fact]
+        public async void GetSpaceTravellersParkingHistory_WrongTravellerName_ExpectException()
+        {
+            var controller = new SpaceTravellersController(spaceTravellerRepository, parkingRepository);
+            // Test
+            var result = await controller.Get("Harry");
 
-            //[HttpGet("{name}/history")]
-
-            //public async Task<IActionResult> Get([StringLength(16)] string name)
-            //{
-            //    var traveller = await _travellerRepository.Get(name);
-
-            //    if (traveller is null)
-            //        return BadRequest("You don't have any parking history");
-
-            //    var history = await _parkingRepository.CheckHistoryAsync(traveller);
-            //    if (history != null)
-            //        return Ok(history);
-
-            //    return BadRequest("No history found");
-            //}
+            Assert.Equal("You don't have any parking history", ((BadRequestObjectResult)result).Value.ToString());
         }
+    }
 }
