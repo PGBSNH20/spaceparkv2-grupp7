@@ -1,9 +1,10 @@
-Bulletpoints för presentationen:
+Bulletpoints fÃ¶r presentationen:
+
 	[Required(ErrorMessage = "You missed something")]
 	- Demo av API
-	- Flödesschema
+	- FlÃ¶desschema
 	- Arkitektur
-	- Repository pattern, motivation och fördelar.
+	- Repository pattern, motivation och fÃ¶rdelar.
 	- Controllers: Authenthication, [Action], Metoder
 	- Tester
 	- Docker
