@@ -15,17 +15,27 @@ namespace SpacePark2Test
             await Task.Delay(1);
         }
 
-        public Task<List<ParkingHouse>> Get()
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<ParkingHouse> Get(string name)
         {
-            if (name == "NabooGalleria")
-                return new() {Name = name, Capacity = 987.6};
+            await Task.Delay(1);
 
+            if (name == "NabooGalleria")
+            {
+                return new ParkingHouse()
+                {
+                    Name = name,
+                    Capacity = 987.6
+                };
+
+            }
             return null;
+        }
+
+
+        Task<List<ParkingHouseDTO>> IParkingHouseRepository.Get()
+        {
+            throw new NotImplementedException();
         }
     }
 }

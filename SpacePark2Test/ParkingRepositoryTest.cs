@@ -64,7 +64,17 @@ namespace SpacePark2Test
             return null;
         }
 
+        public Task<List<Parking>> CheckHistoryAsync(SpaceTraveller traveller)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<Parking>> GetHistoryAsync(SpaceTraveller traveller)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<HistoryDTO>> ArchiveParkingAsync(string name)
         {
             throw new NotImplementedException();
         }

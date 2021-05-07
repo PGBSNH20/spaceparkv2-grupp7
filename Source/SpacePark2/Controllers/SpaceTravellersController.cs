@@ -35,7 +35,7 @@ namespace SpacePark2.Controllers
         /// <param name="name"></param>
         /// <returns></returns>
         [HttpPut("{name}/checkOut")]
-        public async Task<IActionResult> Put([StringLength(16)]string name)
+        public async Task<IActionResult> Put([StringLength(21)]string name)
         {
             var spaceTraveller = await _travellerRepository.Get(name);
             if (spaceTraveller is null)
@@ -55,14 +55,14 @@ namespace SpacePark2.Controllers
         /// <returns></returns>
         [HttpGet("{name}/history")]
 
-        public async Task<IActionResult> Get([StringLength(16)] string name)
+        public async Task<IActionResult> Get([StringLength(21)] string name)
         {
             var traveller = await _travellerRepository.Get(name);
 
             if (traveller is null)
                 return BadRequest("You don't have any parking history");
 
-            var history = await _parkingRepository.GetHistoryAsync(traveller);
+            var history = await _parkingRepository.ArchiveParkingAsync(name);
             if (history != null)
                 return Ok(history);
 

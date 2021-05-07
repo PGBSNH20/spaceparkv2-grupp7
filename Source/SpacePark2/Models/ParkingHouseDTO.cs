@@ -7,7 +7,9 @@ namespace SpacePark2.Models
 {
     public class ParkingHouseDTO
     {
+
         public string Name { get; set; }
         public double Capacity { get; set; }
+
     }
 }
