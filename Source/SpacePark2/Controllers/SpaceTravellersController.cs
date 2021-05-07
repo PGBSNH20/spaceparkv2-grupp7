@@ -21,7 +21,7 @@ namespace SpacePark2.Controllers
         private readonly ISpaceTravellerRepository _travellerRepository;
         private readonly IParkingRepository _parkingRepository;
         
-        [FromHeader(Name = "ApiKey")]
+        [FromHeader(Name = "ApiKey")][Required]
         public string Key { get; set; }
         public SpaceTravellersController(ISpaceTravellerRepository travellerRepository, IParkingRepository parkingRepository)
         {

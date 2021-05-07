@@ -22,7 +22,7 @@ namespace SpacePark2.Controllers
         private readonly IParkingRepository _parkingRepository;
         private readonly IParkingHouseRepository _parkingHouseRepository;
         private readonly ISwApi _swApi;
-        [FromHeader(Name = "ApiKey")]
+        [FromHeader(Name = "ApiKey")][Required]
         public string Key { get; set; }
 
         public ParkingController(ISpaceTravellerRepository travellerRepository, IParkingRepository parkingRepository, IParkingHouseRepository parkingHouseRepository, ISwApi swApi)
