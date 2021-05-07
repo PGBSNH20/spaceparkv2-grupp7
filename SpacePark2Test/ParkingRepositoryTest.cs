@@ -56,8 +56,8 @@ namespace SpacePark2Test
                     DepartureTime = Convert.ToDateTime("2021 - 05 - 06 01:12")
                 };
                 DateTime start = obiPark.ArrivalTime;
-                DateTime end = (DateTime) obiPark.DepartureTime;
-                obiPark.Cost = (int)(Math.Round(((end - start).TotalMinutes),0) * 250);
+                DateTime end = (DateTime)obiPark.DepartureTime;
+                obiPark.Cost = (int)(Math.Round(((end - start).TotalMinutes), 0) * 250);
                 return obiPark;
             }
 
@@ -74,9 +74,46 @@ namespace SpacePark2Test
             throw new NotImplementedException();
         }
 
-        public Task<List<HistoryDTO>> ArchiveParkingAsync(string name)
+        public async Task<List<HistoryDTO>> ArchiveParkingAsync(string name)
         {
-            throw new NotImplementedException();
+            await Task.Delay(1);
+            if (name == "Obi-Wan Kenobi")
+            {
+
+                var history = new List<HistoryDTO>();
+
+                history.Add(new HistoryDTO
+                {
+                    Name = "Obi-Wan Kenobi",
+                    StarShipModel = "Trade Federation cruiser",
+                    ArrivalTime = Convert.ToDateTime("2020 - 05 - 05 14:43"),
+                    DepartureTime = Convert.ToDateTime("2020 - 05 - 06 15:47"),
+                    Cost = 20136,
+                    ParkingHouse = "Naboo Galleria"
+                });
+                history.Add(new HistoryDTO
+                {
+                    Name = "Obi-Wan Kenobi",
+                    StarShipModel = "Trade Federation cruiser",
+                    ArrivalTime = Convert.ToDateTime("2020 - 08 - 13 14:43"),
+                    DepartureTime = Convert.ToDateTime("2020 - 08 - 03 15:47"),
+                    Cost = 8136,
+                    ParkingHouse = "Naboo Galleria"
+                });
+                history.Add(new HistoryDTO
+                {
+                    Name = "Obi-Wan Kenobi",
+                    StarShipModel = "Naboo star skiff",
+                    ArrivalTime = Convert.ToDateTime("2020 - 10 - 01 14:43"),
+                    DepartureTime = Convert.ToDateTime("2020 - 10 - 03 12:49"),
+                    Cost = 88143,
+                    ParkingHouse = "Naboo Galleria"
+                });
+                return history;
+            }
+
+            return null;
+
         }
     }
 }
