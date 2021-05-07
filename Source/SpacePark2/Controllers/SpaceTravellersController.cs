@@ -21,7 +21,7 @@ namespace SpacePark2.Controllers
         private readonly ISpaceTravellerRepository _travellerRepository;
         private readonly IParkingRepository _parkingRepository;
         
-        [FromHeader(Name = "ApiKey")]
+        [FromHeader(Name = "ApiKey")][Required]
         public string Key { get; set; }
         public SpaceTravellersController(ISpaceTravellerRepository travellerRepository, IParkingRepository parkingRepository)
         {
@@ -62,7 +62,7 @@ namespace SpacePark2.Controllers
             if (traveller is null)
                 return BadRequest("You don't have any parking history");
 
-            var history = await _parkingRepository.ArchiveParkingAsync(name);
+            var history = await _parkingRepository.ParkingHistoryAsync(traveller);
             if (history != null)
                 return Ok(history);
 

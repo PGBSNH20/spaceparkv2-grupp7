@@ -10,9 +10,7 @@ namespace Service
     {
         static void Main(string[] args)
         {
-            //var swapi = new SwApi();
-            //var something = swapi.GetSpaceTraveller("yoda");
-            //Console.WriteLine(something.Result.eye_color);
+           
         }
     }
 }

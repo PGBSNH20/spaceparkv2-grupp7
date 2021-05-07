@@ -20,12 +20,6 @@ namespace SpacePark2.Repositories
             return entity;
         }
 
-        public async Task<T> Delete<T>(T entity) where T : class
-        {
-            _context.Remove(entity);
-            await Save();
-            return entity;
-        }
 
         public async Task Update<T>(T entity) where T : class
         {
