@@ -2,7 +2,7 @@ Klassbeskrivning:
 
 docker-compose:
 	- .dockerignore
-	- docker-compose.yml: Innehåller våra docker-compose properties. Vi har kommenterat ut första raderna då dessa förhindrade oss från att använda containern som körde databasen samtidigt som varandra.
+	- docker-compose.yml: Innehåller våra docker-compose properties. Vi har kommenterat ut första raderna då dessa förhindrade oss från att använda containern som körde databasen samtidigt som varandra. Även .gitignorad då den innehåller lösenord till databasen
 
 Service: Projektet som innehåller vår funktionalitet som relaterar to SwApi.dev. 
 	- Contracts:
