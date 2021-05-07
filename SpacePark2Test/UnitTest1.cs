@@ -73,7 +73,7 @@ namespace SpacePark2Test
             var controller = new ParkingHouseController(parkingHouseRepository);
 
             // Test
-            var result = await controller.Post("Header", "Naboo Galleria", 6000);
+            var result = await controller.Post("Naboo Galleria", 6000, "Header");
 
             Assert.Equal("Naboo Galleria has been added with a capacity of 6000 total meters parking!", ((OkObjectResult)result).Value.ToString());
         }
