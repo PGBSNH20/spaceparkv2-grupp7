@@ -24,7 +24,7 @@
 
 **GET Parkinghouse**
 /api/ParkingHouse
-![Screenshot API](dockerRunProgram.PNG)
+![Screenshot GetParkingHouse API](getparkinghouse.png)
 
 
 
