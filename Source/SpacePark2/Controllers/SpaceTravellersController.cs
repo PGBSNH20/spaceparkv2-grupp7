@@ -30,7 +30,7 @@ namespace SpacePark2.Controllers
         }
 
         /// <summary>
-        /// Unpark your spaceship and pay
+        /// Unpark your starship and pay
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
