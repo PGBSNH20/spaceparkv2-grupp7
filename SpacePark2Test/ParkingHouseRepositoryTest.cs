@@ -24,7 +24,6 @@ namespace SpacePark2Test
                     Name = name,
                     Capacity = 987.6
                 };
-
             }
             return null;
         }

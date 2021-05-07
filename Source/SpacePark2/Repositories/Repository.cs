@@ -8,6 +8,7 @@ namespace SpacePark2.Repositories
     public class Repository : IRepository
     {
         protected readonly SpaceParkContext _context;
+
         public Repository(SpaceParkContext context)
         {
             _context = context;
@@ -19,7 +20,6 @@ namespace SpacePark2.Repositories
             await Save();
             return entity;
         }
-
 
         public async Task Update<T>(T entity) where T : class
         {

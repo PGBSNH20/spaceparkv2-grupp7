@@ -19,6 +19,7 @@ namespace SpacePark2.Repositories
 
             return new SpaceTraveller { Name = newTraveller.Name };
         }
+
         public async Task<SpaceTraveller> Get(string name)
         {
             return await _context.SpaceTraveller.FirstOrDefaultAsync(x => x.Name == name);

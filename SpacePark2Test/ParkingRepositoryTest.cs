@@ -62,7 +62,6 @@ namespace SpacePark2Test
             await Task.Delay(1);
             if (spaceTraveller.Name == "Obi-Wan Kenobi")
             {
-
                 var history = new List<HistoryDTO>();
 
                 history.Add(new HistoryDTO

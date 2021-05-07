@@ -71,6 +71,7 @@ namespace SpacePark2.Controllers
             };
 
             await _parkingRepository.AddParkingAsync(parking);
+
             return Ok($"You parked your car at {DateTime.Now}!");
         }
     }

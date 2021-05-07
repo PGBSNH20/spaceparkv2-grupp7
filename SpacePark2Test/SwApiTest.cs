@@ -11,7 +11,10 @@ namespace SpacePark2Test
     {
         private static List<string> starShips = new()
         {
-            "jedi starfighter", "trade federation cruiser", "naboo star skiff", "jedi interceptor",
+            "jedi starfighter", 
+            "trade federation cruiser", 
+            "naboo star skiff", 
+            "jedi interceptor",
             "belbullab-22 starfighter"
         };
 

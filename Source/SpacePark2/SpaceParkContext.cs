@@ -23,6 +23,7 @@ namespace SpacePark2
         public SpaceParkContext(DbContextOptions<SpaceParkContext> options) : base(options)
         {
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var builder = new ConfigurationBuilder();
@@ -32,6 +33,7 @@ namespace SpacePark2
             var defaultConnectionString = config.GetConnectionString("Default");
             optionsBuilder.UseSqlServer(defaultConnectionString);
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ParkingHouse>().HasData(

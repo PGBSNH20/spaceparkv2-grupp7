@@ -36,13 +36,12 @@ namespace SpacePark2
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SpacePark2", Version = "v1" });
-           
-            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-            c.IncludeXmlComments(xmlPath);
-            });
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "SpacePark2", Version = "v1"});
 
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
 
             services.AddDbContext<SpaceParkContext>(
                 x => x.UseSqlServer(Configuration.GetConnectionString("Default")));

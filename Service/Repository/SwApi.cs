@@ -12,11 +12,9 @@ namespace Service.Repository
     {
         public string Name { get; set; }
         private string NamePath { get; set; }
-        public string ShipName { get; set; }
         public string ShipPath { get; set; }
 
         readonly HttpClient Client = new();
-        // TODO Kolla så allt har ToLower
 
         public async Task<T> GetStarWarsObjectAsync<T>(string path)
         {
