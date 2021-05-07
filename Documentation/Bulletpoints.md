@@ -1,15 +1,23 @@
 Bulletpoints för presentationen:
 
 	[Required(ErrorMessage = "You missed something")]
-	- Demo av API
+	- Demo av API : Joakim
+		- Controllers: Authenthication, [Action], Metoder
+	- Arkitektur : Sofie
+		- Repository pattern, motivation och fördelar.
+	- Tester : Sofie
 	- Flödesschema
-	- Arkitektur
-	- Repository pattern, motivation och fördelar.
-	- Controllers: Authenthication, [Action], Metoder
-	- Tester
-	- Docker
-
+	
 	[IfWeHaveTime]
 	- Models och relationer mellan dessa
 	- Databastrukturen
 	- Startup.cs
+	- Docker
+
+GuideLines:
+	
+	- Code
+	- Tests
+	- Patterns
+	- Readiness
+	- Presentation
