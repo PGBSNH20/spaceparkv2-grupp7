@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SpacePark2</name>
+    </assembly>
+    <members>
+        <member name="M:SpacePark2.Controllers.ParkingController.Post(System.String,System.String,System.String)">
+            <summary>
+            Enter your information to park your starship
+            </summary>
+            <param name = "travellerName">Space Traveller</param>
+            <param name="parkingHouse">Parking House</param>
+            <param name="shipModel">Starship Model</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpacePark2.Controllers.ParkingHouseController.Post(System.String,System.Double,System.String)">
+            <summary>
+            Add parkinghouse
+            </summary>
+            <param name="Header"></param>
+            <param name="name"></param>
+            <param name="capacity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpacePark2.Controllers.ParkingHouseController.Get(System.String)">
+            <summary>
+            Get information on all parkinghouses
+            </summary>
+            <param name="Header"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpacePark2.Controllers.SpaceTravellersController.Put(System.String)">
+            <summary>
+            Unpark your starship and pay
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpacePark2.Controllers.SpaceTravellersController.Get(System.String)">
+            <summary>
+            Get information on all previous parkings
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

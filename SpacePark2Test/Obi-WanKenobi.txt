@@ -1,0 +1,24 @@
+﻿
+"name": "Obi-Wan Kenobi", 
+"starships": [
+    "Jedi starfighter", 
+    "Trade Federation cruiser", 
+    "Naboo star skiff", 
+    "Jedi Interceptor", 
+    "Belbullab-22 starfighter"
+]
+
+"name": "Jedi starfighter", 
+    "length": "8"
+
+"name": "Trade Federation cruiser", 
+    "length": "1088"
+
+"name": "Naboo star skiff", 
+    "length": "29.2"
+
+"name": "Jedi Interceptor", 
+    "length": "5.47"
+
+"model": "Belbullab-22 starfighter", 
+    "length": "6.71"
